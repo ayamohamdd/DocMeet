@@ -9,6 +9,7 @@ class DoctorImage extends StatelessWidget {
     return const Align(
       alignment: Alignment.bottomRight,
       child: Image(
+        
         image: AssetImage("assets/images/doctor2.webp"),
         fit: BoxFit.contain,
       ),
