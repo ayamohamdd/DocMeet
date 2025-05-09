@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:quest_task/core/constants/app_colors.dart';
+import 'package:quest_task/core/utils/theme/app_colors.dart';
 import 'package:quest_task/core/constants/media_query_extension.dart';
 
 class FrostedContainer extends StatelessWidget {
@@ -14,7 +14,7 @@ class FrostedContainer extends StatelessWidget {
     required this.child,
     this.borderRadius = 30,
     this.blur = 5,
-    this.color = AppColors.backgroundbluredColor,
+    this.color = AppColors.surfaceBlurred,
   });
 
   @override

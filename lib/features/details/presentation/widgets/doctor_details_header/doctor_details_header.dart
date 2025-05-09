@@ -12,7 +12,7 @@ class DoctorDetailsHeader extends StatelessWidget {
     return Stack(
       children: [
         Transform.translate(
-          offset: Offset(context.screenWidth * 0.15, -context.screenHeight*0.01),
+          offset: Offset(context.screenWidth * 0.15,0),
           child: const DoctorImage(),
         ),
         const DoctorDetailsInfoHeader(),

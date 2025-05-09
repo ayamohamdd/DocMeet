@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quest_task/core/constants/app_colors.dart';
-import 'package:quest_task/core/styles/text_styles.dart';
+import 'package:quest_task/core/utils/theme/text_styles.dart';
+import 'package:quest_task/core/utils/theme/app_colors.dart';
 
 class HomeBodyDoctorsHeading extends StatelessWidget {
   const HomeBodyDoctorsHeading({super.key});
@@ -16,7 +17,7 @@ class HomeBodyDoctorsHeading extends StatelessWidget {
           child: Text(
             "See More",
             style: AppTextStyles.bodyMedium.copyWith(
-              color: AppColors.primaryColor,
+              color: AppColors.primary,
               fontWeight: FontWeight.bold,
             ),
           ),

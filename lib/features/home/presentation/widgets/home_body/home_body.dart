@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quest_task/core/constants/app_colors.dart';
 import 'package:quest_task/core/constants/media_query_extension.dart';
-import 'package:quest_task/core/styles/text_styles.dart';
+import 'package:quest_task/core/utils/theme/text_styles.dart';
 import 'package:quest_task/features/home/presentation/widgets/home_body/home_body_doctors_heading.dart';
 import 'package:quest_task/features/home/presentation/widgets/home_body/home_body_doctors_list.dart';
 

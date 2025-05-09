@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quest_task/core/constants/app_colors.dart';
-import 'package:quest_task/core/styles/text_styles.dart';
+import 'package:quest_task/core/utils/theme/app_colors.dart';
+import 'package:quest_task/core/utils/theme/text_styles.dart';
 import 'package:quest_task/core/constants/media_query_extension.dart';
 
 class DoctorInfoCard extends StatelessWidget {
@@ -25,14 +25,14 @@ class DoctorInfoCard extends StatelessWidget {
         vertical: context.screenHeight * 0.02,
       ),
       decoration: BoxDecoration(
-        color: const Color.fromARGB(231, 255, 255, 255),
+        color: AppColors.backgroundbluredColor,
         borderRadius: BorderRadius.circular(15),
       ),
       child: Stack(
         children: [
           Align(
             alignment: Alignment.topRight,
-            child: Icon(icon, color: AppColors.primaryFontColor, size: 28),
+            child: Icon(icon, color: AppColors.onSurface, size: 28),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -42,7 +42,7 @@ class DoctorInfoCard extends StatelessWidget {
               Text(
                 value,
                 style: AppTextStyles.bodyMedium.copyWith(
-                  color: AppColors.primaryFontColor,
+                  color: AppColors.onSurface,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -50,7 +50,7 @@ class DoctorInfoCard extends StatelessWidget {
               Text(
                 label,
                 style: AppTextStyles.bodyMedium.copyWith(
-                  color: AppColors.thirdFontColor,
+                  color: AppColors.onSurfaceVariant,
                   fontSize: 12,
                 ),
               ),
@@ -60,4 +60,4 @@ class DoctorInfoCard extends StatelessWidget {
       ),
     );
   }
-} 
+}

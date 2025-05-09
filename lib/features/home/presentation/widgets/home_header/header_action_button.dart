@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quest_task/core/constants/app_colors.dart';
+import 'package:quest_task/core/utils/theme/app_colors.dart';
 
 class HeaderActionButton extends StatelessWidget {
   final IconData icon;
@@ -16,9 +16,9 @@ class HeaderActionButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: CircleAvatar(
-        backgroundColor: AppColors.secondaryBackgroundColor,
-        child: Icon(icon),
+        backgroundColor: AppColors.surface,
+        child: Icon(icon, color: AppColors.onSurface),
       ),
     );
   }
-} 
+}

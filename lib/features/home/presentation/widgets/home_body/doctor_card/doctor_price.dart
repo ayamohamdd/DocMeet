@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quest_task/core/constants/app_colors.dart';
-import 'package:quest_task/core/styles/text_styles.dart';
+import 'package:quest_task/core/utils/theme/app_colors.dart';
+import 'package:quest_task/core/utils/theme/text_styles.dart';
 
 class DoctorPrice extends StatelessWidget {
   const DoctorPrice({super.key});
@@ -12,14 +12,14 @@ class DoctorPrice extends StatelessWidget {
         Text(
           '\$95',
           style: AppTextStyles.bodyMedium.copyWith(
-            color: AppColors.backgroundColor,
+            color: AppColors.surfaceVariant,
             fontWeight: FontWeight.bold,
           ),
         ),
         Text(
           '/session',
           style: AppTextStyles.bodyMedium.copyWith(
-            color: AppColors.secondaryFontColor,
+            color: AppColors.onSurfaceDisabled,
           ),
         ),
       ],

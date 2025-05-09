@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quest_task/core/constants/app_colors.dart';
+import 'package:quest_task/core/utils/theme/app_colors.dart';
 import 'package:quest_task/core/constants/media_query_extension.dart';
-import 'package:quest_task/core/styles/text_styles.dart';
+import 'package:quest_task/core/utils/theme/text_styles.dart';
 
 class AvailabilityHeader extends StatelessWidget {
   final String month;
@@ -33,14 +33,14 @@ class AvailabilityHeader extends StatelessWidget {
               Text(
                 'Availability',
                 style: AppTextStyles.bodyMedium.copyWith(
-                  color: AppColors.secondaryBackgroundColor,
+                  color: AppColors.surface,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
                 ' .  $slotsCount slots',
                 style: AppTextStyles.bodyMedium.copyWith(
-                  color: AppColors.secondaryBackgroundColor,
+                  color: AppColors.surface,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -54,7 +54,7 @@ class AvailabilityHeader extends StatelessWidget {
                 icon: const Icon(
                   Icons.arrow_back_ios,
                   size: 10,
-                  color: AppColors.secondaryBackgroundColor,
+                  color: AppColors.surface,
                 ),
                 padding: EdgeInsets.zero,
                 constraints: const BoxConstraints(),
@@ -64,7 +64,7 @@ class AvailabilityHeader extends StatelessWidget {
               Text(
                 month,
                 style: AppTextStyles.bodySmall.copyWith(
-                  color: AppColors.secondaryBackgroundColor,
+                  color: AppColors.surface,
                   fontWeight: FontWeight.bold,
                   fontSize: 10.5,
                 ),
@@ -75,7 +75,7 @@ class AvailabilityHeader extends StatelessWidget {
                 icon: const Icon(
                   Icons.arrow_forward_ios,
                   size: 10,
-                  color: AppColors.secondaryBackgroundColor,
+                  color: AppColors.surface,
                 ),
                 padding: EdgeInsets.zero,
                 constraints: const BoxConstraints(),

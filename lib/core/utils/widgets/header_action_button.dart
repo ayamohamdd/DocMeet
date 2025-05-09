@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quest_task/core/constants/app_colors.dart';
+import 'package:quest_task/core/utils/theme/app_colors.dart';
 
 class HeaderActionButton extends StatelessWidget {
   final IconData icon;
@@ -25,10 +25,10 @@ class HeaderActionButton extends StatelessWidget {
       onTap: onTap,
       child: CircleAvatar(
         radius: size ?? 20,
-        backgroundColor: backgroundColor ?? AppColors.secondaryBackgroundColor,
+        backgroundColor: backgroundColor ?? AppColors.surface,
         child: Icon(
           icon,
-          color: iconColor ?? AppColors.primaryFontColor,
+          color: iconColor ?? AppColors.onSurface,
           size: iconSize ?? 20,
         ),
       ),

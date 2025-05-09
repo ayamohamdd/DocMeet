@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quest_task/core/constants/app_colors.dart';
+import 'package:quest_task/core/utils/theme/app_colors.dart';
 import 'package:quest_task/core/constants/media_query_extension.dart';
-import 'package:quest_task/core/styles/text_styles.dart';
+import 'package:quest_task/core/utils/theme/text_styles.dart';
 
 class DoctorDetailsInfoHeader extends StatelessWidget {
   const DoctorDetailsInfoHeader({super.key});
@@ -23,7 +23,7 @@ class DoctorDetailsInfoHeader extends StatelessWidget {
                 Text(
                   'Neurologist',
                   style: AppTextStyles.bodyMedium.copyWith(
-                    color: AppColors.thirdFontColor,
+                    color: AppColors.onSurfaceVariant,
                   ),
                 ),
                 Text('Dr. William James', style: AppTextStyles.heading2),
@@ -34,7 +34,7 @@ class DoctorDetailsInfoHeader extends StatelessWidget {
             Text(
               "MBBS, MD (Neuro), DM (Neurology), FRCP (UK), FINS, FAAN (USA)",
               style: AppTextStyles.bodyMedium.copyWith(
-                color: AppColors.thirdFontColor,
+                color: AppColors.onSurfaceVariant,
                 fontSize: 12
               ),
             ),
@@ -44,14 +44,14 @@ class DoctorDetailsInfoHeader extends StatelessWidget {
                 Text(
                   '\$95',
                   style: AppTextStyles.heading2.copyWith(
-                    color: AppColors.primaryColor,
+                    color: AppColors.primary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
                   '/session',
                   style: AppTextStyles.bodyMedium.copyWith(
-                    color: AppColors.thirdFontColor,
+                    color: AppColors.onSurfaceVariant,
                   ),
                 ),
               ],

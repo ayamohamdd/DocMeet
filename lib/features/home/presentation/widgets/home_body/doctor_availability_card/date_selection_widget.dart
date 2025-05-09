@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quest_task/core/constants/app_colors.dart';
+import 'package:quest_task/core/utils/theme/app_colors.dart';
 import 'package:quest_task/core/constants/media_query_extension.dart';
-import 'package:quest_task/core/styles/text_styles.dart';
+import 'package:quest_task/core/utils/theme/text_styles.dart';
 
 class DateSelectionWidget extends StatelessWidget {
   final int selectedIndex;
@@ -39,8 +39,8 @@ class DateSelectionWidget extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 color: isSelected
-                    ? AppColors.secondaryBackgroundColor
-                    : AppColors.backgroundbluredColor,
+                    ? AppColors.surface
+                    : AppColors.surfaceBlurred,
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Padding(
@@ -59,12 +59,12 @@ class DateSelectionWidget extends StatelessWidget {
                       height: context.screenWidth * 0.09,
                       decoration: BoxDecoration(
                         color: isSelected
-                            ? AppColors.primaryColor
-                            : AppColors.backgroundbluredColor,
+                            ? AppColors.primary
+                            : AppColors.surfaceBlurred,
                         border: Border.all(
                           color: isSelected
-                              ? AppColors.primaryColor
-                              : AppColors.backgroundbluredColor,
+                              ? AppColors.primary
+                              : AppColors.surfaceBlurred,
                           width: 2,
                         ),
                         borderRadius: BorderRadius.circular(30),
@@ -75,8 +75,8 @@ class DateSelectionWidget extends StatelessWidget {
                         style: AppTextStyles.bodySmall.copyWith(
                           fontWeight: FontWeight.bold,
                           color: isSelected
-                              ? AppColors.secondaryBackgroundColor
-                              : AppColors.primaryFontColor,
+                              ? AppColors.surface
+                              : AppColors.onSurface,
                         ),
                       ),
                     ),
