@@ -35,7 +35,7 @@ class DoctorDetailsInfoHeader extends StatelessWidget {
               "MBBS, MD (Neuro), DM (Neurology), FRCP (UK), FINS, FAAN (USA)",
               style: AppTextStyles.bodyMedium.copyWith(
                 color: AppColors.onSurfaceVariant,
-                fontSize: 12
+                fontSize: 12,
               ),
             ),
             SizedBox(height: context.screenHeight * 0.02),

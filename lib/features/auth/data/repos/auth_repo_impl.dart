@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:developer' as dev;
@@ -10,11 +9,14 @@ import 'package:quest_task/features/auth/domain/repos/auth_repo.dart';
 class AuthRepoImpl extends AuthRepo {
   AuthDataSource authDataSource;
   AuthRepoImpl({required this.authDataSource});
+
   @override
-  Future<Either<Failure, void>> signIn(String email, String password) async {
+  Future<Either<Failure, String>> signIn(String email, String password) async {
     try {
-      await authDataSource.signIn(email, password);
-      return right(null);
+      final token = await authDataSource.signIn(email, password);
+
+      dev.log("token $token");
+      return right(token);
     } on FirebaseAuthException catch (e) {
       return left(AuthFailure.fromFirebaseAuthException(e));
     } catch (e) {
@@ -28,14 +30,15 @@ class AuthRepoImpl extends AuthRepo {
   }
 
   @override
-  Future<Either<Failure, void>> signUp(
+  Future<Either<Failure, String>> signUp(
     String name,
     String email,
     String password,
   ) async {
     try {
-      await authDataSource.signUp(name, email, password);
-      return right(null);
+      final token = await authDataSource.signUp(name, email, password);
+
+      return right(token);
     } on FirebaseAuthException catch (e) {
       return left(AuthFailure.fromFirebaseAuthException(e));
     } catch (e) {

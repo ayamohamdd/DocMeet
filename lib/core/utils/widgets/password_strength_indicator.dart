@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:quest_task/core/utils/theme/app_colors.dart';
 
-enum PasswordStrength {
-  weak,
-  medium,
-  strong,
-}
+enum PasswordStrength { weak, medium, strong }
 
 class PasswordStrengthIndicator extends StatelessWidget {
   final PasswordStrength strength;
 
-  const PasswordStrengthIndicator({
-    super.key,
-    required this.strength,
-  });
+  const PasswordStrengthIndicator({super.key, required this.strength});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +14,11 @@ class PasswordStrengthIndicator extends StatelessWidget {
       children: [
         _buildStrengthBar(0, strength == PasswordStrength.weak),
         const SizedBox(width: 4),
-        _buildStrengthBar(1, strength == PasswordStrength.medium || strength == PasswordStrength.strong),
+        _buildStrengthBar(
+          1,
+          strength == PasswordStrength.medium ||
+              strength == PasswordStrength.strong,
+        ),
         const SizedBox(width: 4),
         _buildStrengthBar(2, strength == PasswordStrength.strong),
         const SizedBox(width: 8),
@@ -69,4 +66,4 @@ class PasswordStrengthIndicator extends StatelessWidget {
         return Colors.green;
     }
   }
-} 
+}

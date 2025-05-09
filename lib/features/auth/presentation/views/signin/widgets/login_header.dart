@@ -13,10 +13,7 @@ class LoginHeader extends StatelessWidget {
           image: const AssetImage("assets/images/logo.png"),
           width: context.screenWidth * 0.25,
         ),
-        Text(
-          'Sign In',
-          style: AppTextStyles.heading2.copyWith(fontSize: 30),
-        ),
+        Text('Sign In', style: AppTextStyles.heading2.copyWith(fontSize: 30)),
         SizedBox(height: context.screenHeight * 0.01),
         Text(
           "Let's get you connected with the right specialist.",
@@ -25,4 +22,4 @@ class LoginHeader extends StatelessWidget {
       ],
     );
   }
-} 
+}

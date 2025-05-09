@@ -16,10 +16,7 @@ class PasswordRequirement {
 class PasswordRequirementsIndicator extends StatelessWidget {
   final String password;
 
-  const PasswordRequirementsIndicator({
-    super.key,
-    required this.password,
-  });
+  const PasswordRequirementsIndicator({super.key, required this.password});
 
   List<PasswordRequirement> _getRequirements() {
     return [
@@ -60,37 +57,41 @@ class PasswordRequirementsIndicator extends StatelessWidget {
         Text(
           'Password Requirements:',
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: AppColors.onSurfaceVariant,
-                fontWeight: FontWeight.w500,
-              ),
+            color: AppColors.onSurfaceVariant,
+            fontWeight: FontWeight.w500,
+          ),
         ),
         const SizedBox(height: 8),
-        ...requirements.map((requirement) => Padding(
-              padding: const EdgeInsets.only(bottom: 4),
-              child: Row(
-                children: [
-                  Icon(
-                    requirement.isMet
-                        ? Icons.check_circle_outline
-                        : Icons.circle_outlined,
-                    size: 16,
-                    color: requirement.isMet
-                        ? Colors.green
-                        : AppColors.onSurfaceDisabled,
+        ...requirements.map(
+          (requirement) => Padding(
+            padding: const EdgeInsets.only(bottom: 4),
+            child: Row(
+              children: [
+                Icon(
+                  requirement.isMet
+                      ? Icons.check_circle_outline
+                      : Icons.circle_outlined,
+                  size: 16,
+                  color:
+                      requirement.isMet
+                          ? Colors.green
+                          : AppColors.onSurfaceDisabled,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  requirement.text,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color:
+                        requirement.isMet
+                            ? Colors.green
+                            : AppColors.onSurfaceDisabled,
                   ),
-                  const SizedBox(width: 8),
-                  Text(
-                    requirement.text,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: requirement.isMet
-                              ? Colors.green
-                              : AppColors.onSurfaceDisabled,
-                        ),
-                  ),
-                ],
-              ),
-            )),
+                ),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
-} 
+}

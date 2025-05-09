@@ -14,11 +14,7 @@ class DoctorInfoCardsRow extends StatelessWidget {
           value: '12 years',
           label: 'Experience',
         ),
-        DoctorInfoCard(
-          icon: Icons.star_border,
-          value: '4.8',
-          label: 'Rating',
-        ),
+        DoctorInfoCard(icon: Icons.star_border, value: '4.8', label: 'Rating'),
         DoctorInfoCard(
           icon: Icons.person_outline,
           value: '2500+',
@@ -27,4 +23,4 @@ class DoctorInfoCardsRow extends StatelessWidget {
       ],
     );
   }
-} 
+}

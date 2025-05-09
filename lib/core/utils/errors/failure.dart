@@ -5,27 +5,15 @@ abstract class Failure {
   final String? code;
   final dynamic data;
 
-  const Failure({
-    required this.message,
-    this.code,
-    this.data,
-  });
+  const Failure({required this.message, this.code, this.data});
 }
 
 class ServerFailure extends Failure {
-  const ServerFailure({
-    required super.message,
-    super.code,
-    super.data,
-  });
+  const ServerFailure({required super.message, super.code, super.data});
 }
 
 class CacheFailure extends Failure {
-  const CacheFailure({
-    required super.message,
-    super.code,
-    super.data,
-  });
+  const CacheFailure({required super.message, super.code, super.data});
 
   factory CacheFailure.saveError() {
     return const CacheFailure(
@@ -43,11 +31,7 @@ class CacheFailure extends Failure {
 }
 
 class ValidationFailure extends Failure {
-  const ValidationFailure({
-    required super.message,
-    super.code,
-    super.data,
-  });
+  const ValidationFailure({required super.message, super.code, super.data});
 
   factory ValidationFailure.invalidEmail() {
     return const ValidationFailure(
@@ -80,11 +64,7 @@ class ValidationFailure extends Failure {
 }
 
 class AuthFailure extends Failure {
-  const AuthFailure({
-    required super.message,
-    super.code,
-    super.data,
-  });
+  const AuthFailure({required super.message, super.code, super.data});
 
   factory AuthFailure.fromFirebaseAuthException(FirebaseAuthException e) {
     switch (e.code) {
@@ -150,12 +130,14 @@ class AuthFailure extends Failure {
         );
       case 'credential-already-in-use':
         return const AuthFailure(
-          message: 'This credential is already associated with a different user',
+          message:
+              'This credential is already associated with a different user',
           code: 'CREDENTIAL_IN_USE',
         );
       case 'account-exists-with-different-credential':
         return const AuthFailure(
-          message: 'An account already exists with the same email address but different sign-in credentials',
+          message:
+              'An account already exists with the same email address but different sign-in credentials',
           code: 'ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL',
         );
       default:
@@ -174,10 +156,7 @@ class AuthFailure extends Failure {
   }
 
   factory AuthFailure.userNotFound() {
-    return const AuthFailure(
-      message: 'User not found',
-      code: 'USER_NOT_FOUND',
-    );
+    return const AuthFailure(message: 'User not found', code: 'USER_NOT_FOUND');
   }
 
   factory AuthFailure.emailAlreadyInUse() {
@@ -196,11 +175,7 @@ class AuthFailure extends Failure {
 }
 
 class NetworkFailure extends Failure {
-  const NetworkFailure({
-    required super.message,
-    super.code,
-    super.data,
-  });
+  const NetworkFailure({required super.message, super.code, super.data});
 
   factory NetworkFailure.noConnection() {
     return const NetworkFailure(

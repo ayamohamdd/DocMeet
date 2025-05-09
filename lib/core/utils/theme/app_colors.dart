@@ -9,12 +9,7 @@ class AppColors {
   static const Color surface = Color(0xffffffff);
   static const Color surfaceVariant = Color.fromARGB(255, 245, 248, 249);
   static const Color surfaceBlurred = Color.fromARGB(115, 241, 244, 255);
-  static const Color backgroundbluredColor =  Color.fromARGB(
-    231,
-    255,
-    255,
-    255,
-  );
+  static const Color backgroundbluredColor = Color.fromARGB(231, 255, 255, 255);
 
   // Text colors
   static const Color onSurface = Color(0xff000000);

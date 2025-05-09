@@ -11,7 +11,7 @@ import 'package:quest_task/core/utils/widgets/primary_button.dart';
 class BaseAuthForm extends StatefulWidget {
   final List<Widget> additionalFields;
   final String submitButtonText;
-  // final Future<Either<Failure, void>> Function(String email, String password, [String? name]) onSubmit;
+  final Function(String email, String password, [String? name]) onSubmit;
   final String alternateActionText;
   final String alternateActionButtonText;
   final VoidCallback onAlternateAction;
@@ -23,7 +23,7 @@ class BaseAuthForm extends StatefulWidget {
     super.key,
     this.additionalFields = const [],
     required this.submitButtonText,
-    // required this.onSubmit,
+    required this.onSubmit,
     required this.alternateActionText,
     required this.alternateActionButtonText,
     required this.onAlternateAction,
@@ -96,6 +96,17 @@ class _BaseAuthFormState extends State<BaseAuthForm> {
   Future<void> _handleSubmit() async {
     if (_formKey.currentState!.validate()) {
       setState(() => _isLoading = true);
+      try {
+        await widget.onSubmit(
+          _emailController.text,
+          _passwordController.text,
+          widget.nameValidator != null ? _nameController.text : null,
+        );
+      } finally {
+        if (mounted) {
+          setState(() => _isLoading = false);
+        }
+      }
     }
   }
 
@@ -103,6 +114,7 @@ class _BaseAuthFormState extends State<BaseAuthForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
+
       child: Column(
         children: [
           if (widget.nameValidator != null) ...[

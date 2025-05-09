@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:quest_task/features/auth/presentation/signin/views/login_view.dart';
-import 'package:quest_task/features/auth/presentation/signup/views/signup_view.dart';
+import 'package:quest_task/core/di/setup_service_locator.dart';
+import 'package:quest_task/features/auth/presentation/manager/cubit/auth_cubit.dart';
+import 'package:quest_task/features/auth/presentation/views/signin/views/login_view.dart';
+import 'package:quest_task/features/auth/presentation/views/signup/views/signup_view.dart';
 import 'package:quest_task/features/details/presentation/views/doctor_details_view.dart';
+import 'package:quest_task/features/home/presentation/manager/cubit/home_cubit.dart';
 import 'package:quest_task/features/home/presentation/views/home_view.dart';
+import 'package:quest_task/features/splash/presentation/views/splash_view.dart';
 
 class AppRouter {
+  static const String splashView = '/';
   static const String homeView = '/home';
   static const String detailsView = '/detailsView';
 
@@ -13,17 +19,39 @@ class AppRouter {
   static const String signUpView = '/register';
 
   static final appRouter = GoRouter(
-    initialLocation: signInView,
+    initialLocation: splashView,
     routes: [
-      GoRoute(path: homeView, builder: (context, state) => const HomeView()),
+      GoRoute(
+        path: splashView,
+        builder: (context, state) => const SplashView(),
+      ),
+      GoRoute(
+        path: homeView,
+        builder:
+            (context, state) => BlocProvider(
+              create: (context) => HomeCubit()..getAllSpecialists(),
+              child: const HomeView(),
+            ),
+      ),
       GoRoute(
         path: detailsView,
         builder: (context, state) => const DoctorDetailsView(),
       ),
-      GoRoute(path: signInView, builder: (context, state) => const LoginView()),
+      GoRoute(
+        path: signInView,
+        builder:
+            (context, state) => BlocProvider(
+              create: (context) => AuthCubit(),
+              child: const LoginView(),
+            ),
+      ),
       GoRoute(
         path: signUpView,
-        builder: (context, state) => const SignUpView(),
+        builder:
+            (context, state) => BlocProvider.value(
+              value: SetupSeviceLocator.sl<AuthCubit>(),
+              child: const SignUpView(),
+            ),
       ),
     ],
     errorBuilder:
