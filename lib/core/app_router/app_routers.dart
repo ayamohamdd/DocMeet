@@ -10,6 +10,7 @@ import 'package:quest_task/features/home/domain/entities/specialist_entity.dart'
 import 'package:quest_task/features/home/presentation/manager/cubit/home_cubit.dart';
 import 'package:quest_task/features/main_navigation/presentation/views/main_navigation_view.dart';
 import 'package:quest_task/features/splash/presentation/views/splash_view.dart';
+import 'package:quest_task/features/details/domain/repos/appointment_repo.dart';
 
 class AppRouter {
   static const String splashView = '/';
@@ -39,7 +40,9 @@ class AppRouter {
         builder: (context, state) {
           final SpecialistEntity specialistEntity =
               state.extra as SpecialistEntity;
-          return DoctorDetailsView(specialistEntity: specialistEntity);
+          return DoctorDetailsView(
+            specialistEntity: specialistEntity,
+          );
         },
       ),
       GoRoute(

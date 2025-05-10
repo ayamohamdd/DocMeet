@@ -5,14 +5,14 @@ import 'package:quest_task/core/constants/media_query_extension.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String text;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final double? width;
   final double? height;
 
   const PrimaryButton({
     super.key,
     required this.text,
-    required this.onPressed,
+    this.onPressed,
     this.width,
     this.height,
   });
@@ -29,11 +29,16 @@ class PrimaryButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(32),
           ),
           elevation: 0,
+          disabledBackgroundColor: AppColors.primary.withOpacity(0.5),
         ),
         onPressed: onPressed,
         child: Text(
           text,
-          style: AppTextStyles.bodyLarge.copyWith(color: AppColors.onSecondary),
+          style: AppTextStyles.bodyLarge.copyWith(
+            color: onPressed == null 
+                ? AppColors.onSecondary.withOpacity(0.5)
+                : AppColors.onSecondary,
+          ),
         ),
       ),
     );

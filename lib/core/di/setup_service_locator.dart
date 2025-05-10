@@ -8,12 +8,17 @@ import 'package:quest_task/features/auth/domain/use_cases/signin_use_case.dart';
 import 'package:quest_task/features/auth/domain/use_cases/signup_use_case.dart';
 import 'package:quest_task/features/auth/presentation/manager/cubit/auth_cubit.dart';
 import 'package:quest_task/core/services/storage_service.dart';
+import 'package:quest_task/features/details/domain/use_cases/book_appointment_use_case.dart';
+import 'package:quest_task/features/details/presentation/manager/cubit/appointment_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:quest_task/features/home/data/data_source/home_data_source.dart';
 import 'package:quest_task/features/home/data/repos/home_repo_impl.dart';
 import 'package:quest_task/features/home/domain/repos/home_repo.dart';
 import 'package:quest_task/features/home/domain/use_cases/get_all_specialists_use_case.dart';
 import 'package:quest_task/features/home/presentation/manager/cubit/home_cubit.dart';
+import 'package:quest_task/features/details/data/data_source/appointment_data_source.dart';
+import 'package:quest_task/features/details/data/repos/appointment_repo_impl.dart';
+import 'package:quest_task/features/details/domain/repos/appointment_repo.dart';
 
 class SetupSeviceLocator {
   static final sl = GetIt.asNewInstance();
@@ -36,6 +41,7 @@ class SetupSeviceLocator {
           AuthDataSourceImpl(firebaseAuthServices: sl<FirebaseAuthServices>()),
     );
     sl.registerLazySingleton<HomeDataSource>(() => HomeDataSourceImpl());
+    sl.registerLazySingleton<AppointmentDataSource>(() => AppointmentDataSourceImpl());
   }
 
   static void registerRepositories() {
@@ -44,6 +50,9 @@ class SetupSeviceLocator {
     );
     sl.registerLazySingleton<HomeRepo>(
       () => HomeRepoImpl(homeDataSource: sl<HomeDataSource>()),
+    );
+    sl.registerLazySingleton<AppointmentRepo>(
+      () => AppointmentRepoImpl(appointmentDataSource: sl<AppointmentDataSource>()),
     );
   }
 
@@ -57,11 +66,16 @@ class SetupSeviceLocator {
     sl.registerLazySingleton<GetAllSpecialistsUseCase>(
       () => GetAllSpecialistsUseCase(homeRepo: sl<HomeRepo>()),
     );
+       sl.registerLazySingleton<BookAppointmentUseCase>(
+      () => BookAppointmentUseCase(appointmentRepo: sl<AppointmentRepo>()),
+    );
   }
 
   static void registerCubits() {
     sl.registerLazySingleton<AuthCubit>(() => AuthCubit());
     sl.registerLazySingleton<HomeCubit>(() => HomeCubit());
+    sl.registerLazySingleton<AppointmentCubit>(() => AppointmentCubit());
+
   }
 
   static void registerCore() {

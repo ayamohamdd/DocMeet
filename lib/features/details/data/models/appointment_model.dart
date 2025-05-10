@@ -18,7 +18,7 @@ class AppointmentModel extends AppointmentEntity{
     this.specialistName,
     this.status,
     this.uid,
-  }):super(day: day,hour: hour,specialistName: specialistName,status: status);
+  }):super(day: day,hour: hour,specialistName: specialistName,status: status, uid: uid);
 
   factory AppointmentModel.fromJson(Map<String, dynamic> json) {
     return AppointmentModel(

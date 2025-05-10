@@ -15,11 +15,11 @@ class AppointmentRepoImpl extends AppointmentRepo {
 
   @override
   Future<Either<Failure, void>> bookAnAppointment(
-    AppointmentEntity appointmentEntity,
+    AppointmentModel appointmentModel,
   ) async {
     try {
       final response = await appointmentDataSource.bookAnAppointment(
-        appointmentEntity as AppointmentModel,
+        appointmentModel,
       );
       return right(response);
     } on FirebaseAuthException catch (e) {

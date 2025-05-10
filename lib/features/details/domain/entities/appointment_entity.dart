@@ -1,5 +1,5 @@
 class AppointmentEntity {
-   String? day;
+  String? day;
   String? hour;
   String? specialistName;
   String? status;
