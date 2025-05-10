@@ -9,10 +9,7 @@ class HomeHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        UserGreeting(),
-        HeaderActions(),
-      ],
+      children: [UserGreeting(), HeaderActions()],
     );
   }
-} 
+}

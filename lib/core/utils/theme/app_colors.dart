@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class AppColors {
   // Primary colors
   static const Color primary = Color(0xff007ac2);
-  static const Color onPrimary = Colors.white;
+
+  static const Color onPrimary = Color.fromARGB(255, 184, 212, 228);
 
   // Surface colors
   static const Color surface = Color(0xffffffff);

@@ -1,49 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:quest_task/core/constants/app_colors.dart';
 import 'package:quest_task/core/constants/media_query_extension.dart';
-import 'package:quest_task/core/utils/theme/text_styles.dart';
 import 'package:quest_task/core/utils/theme/app_colors.dart';
 import 'package:quest_task/features/home/domain/entities/specialist_entity.dart';
+import 'package:quest_task/features/details/presentation/widgets/doctor_details_body/about_tab.dart';
+import 'package:quest_task/features/details/presentation/widgets/doctor_details_body/availability_tab.dart';
 
-class DoctorDetailsBody extends StatelessWidget {
+class DoctorDetailsBody extends StatefulWidget {
   const DoctorDetailsBody({super.key, required this.specialistEntity});
   final SpecialistEntity specialistEntity;
+
+  @override
+  State<DoctorDetailsBody> createState() => _DoctorDetailsBodyState();
+}
+
+class _DoctorDetailsBodyState extends State<DoctorDetailsBody>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: context.screenHeight * 0.8,
-      decoration: BoxDecoration(
-        color: AppColors.onSecondary,
-        borderRadius: BorderRadius.circular(25),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        ),
       ),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: context.screenWidth * 0.05,
-
-          vertical: context.screenHeight * 0.03,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'About',
-              style: AppTextStyles.heading2.copyWith(
-                color: AppColors.primary,
-                fontSize: 20,
-              ),
+      child: Column(
+        children: [
+          TabBar(
+            controller: _tabController,
+            labelColor: AppColors.primary,
+            dividerColor: AppColors.onPrimary,
+            unselectedLabelColor: AppColors.onSurfaceVariant,
+            indicatorColor: AppColors.primary,
+            tabs: const [Tab(text: 'About'), Tab(text: 'Availability')],
+          ),
+          SizedBox(
+            height: context.screenHeight * 0.5,
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                AboutTab(specialistEntity: widget.specialistEntity),
+                AvailabilityTab(specialistEntity: widget.specialistEntity),
+              ],
             ),
-            Container(
-              height: 1,
-              width: context.screenHeight * 0.08,
-              decoration: BoxDecoration(color: AppColors.primary),
-            ),
-            SizedBox(height: context.screenHeight * 0.02),
-            Text(
-              "${specialistEntity.bio}",
-              style: AppTextStyles.bodyMedium.copyWith(height: 1.5),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

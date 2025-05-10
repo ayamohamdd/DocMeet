@@ -28,11 +28,13 @@ class DoctorDetailsInfoHeader extends StatelessWidget {
                     color: AppColors.onSurfaceVariant,
                   ),
                 ),
-                Text(specialistEntity.name ?? '', style: AppTextStyles.heading2),
+                Text(
+                  specialistEntity.name ?? '',
+                  style: AppTextStyles.heading2,
+                ),
               ],
             ),
 
-          
             SizedBox(height: context.screenHeight * 0.02),
             Row(
               children: [

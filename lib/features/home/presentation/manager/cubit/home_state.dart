@@ -16,4 +16,4 @@ final class HomeErrorState extends HomeState {
   final String error;
 
   HomeErrorState({required this.error});
-} 
+}

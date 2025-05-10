@@ -1,20 +1,7 @@
 {
-  "availability_days": [
-        {
-            "day": "Monday",
-            "hours": ["12:00","15:00"]
-
-        },
-        {
-            "day": "Tuesday",
-            "hours": ["12:00","15:00"]
-        }
-    ],
-  "bio": "Dr. Emily Davis is a renowned clinical psychologist specializing in trauma recovery and grief counseling. With a PhD in clinical psychology and over 8 years of experience, she has helped numerous clients navigate through challenging life events, including the loss of loved ones and recovery from traumatic experiences. Her empathetic and client-centered approach fosters a safe environment for healing.",
-  "category": "Psychologist",
-  "experience_years": 8,
-  "name": "Dr. Emily Davis",
-  "patient_count": 3500,
-  "price": 75,
-  "rating": 4.8
+  "day": "Monday",
+  "hour":"05:00 PM",
+  "specialist_name":"Dr. Emily Davi",
+  "status":"booked",
+  "uid" : "7Oc54YV2BTZRCXl7zbSAcrS5Tmx2"
 }

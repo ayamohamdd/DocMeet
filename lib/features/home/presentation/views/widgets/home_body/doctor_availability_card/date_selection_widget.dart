@@ -25,7 +25,9 @@ class DateSelectionWidget extends StatelessWidget {
   }
 
   int _getAvailabilityIndex(String day) {
-    return availability.indexWhere((a) => a.day?.toLowerCase() == day.toLowerCase());
+    return availability.indexWhere(
+      (a) => a.day?.toLowerCase() == day.toLowerCase(),
+    );
   }
 
   @override
@@ -45,21 +47,21 @@ class DateSelectionWidget extends StatelessWidget {
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: weekDays.length,
-        separatorBuilder: (context, index) =>
-            SizedBox(width: context.screenWidth * 0.02),
+        separatorBuilder:
+            (context, index) => SizedBox(width: context.screenWidth * 0.02),
         itemBuilder: (context, index) {
           final day = weekDays[index];
           final isAvailable = _isDayAvailable(day);
-          final availabilityIndex = isAvailable ? _getAvailabilityIndex(day) : -1;
+          final availabilityIndex =
+              isAvailable ? _getAvailabilityIndex(day) : -1;
           final isSelected = isAvailable && availabilityIndex == selectedIndex;
 
           return GestureDetector(
             onTap: isAvailable ? () => onDateSelected(availabilityIndex) : null,
             child: Container(
               decoration: BoxDecoration(
-                color: isSelected
-                    ? AppColors.surface
-                    : AppColors.surfaceBlurred,
+                color:
+                    isSelected ? AppColors.surface : AppColors.surfaceBlurred,
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Padding(
@@ -70,7 +72,10 @@ class DateSelectionWidget extends StatelessWidget {
                       day.substring(0, 3),
                       style: AppTextStyles.bodySmall.copyWith(
                         fontWeight: FontWeight.bold,
-                        color: isAvailable ? AppColors.onSurface : AppColors.onSurface.withOpacity(0.5),
+                        color:
+                            isAvailable
+                                ? AppColors.onSurface
+                                : AppColors.onSurface.withOpacity(0.5),
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -78,13 +83,15 @@ class DateSelectionWidget extends StatelessWidget {
                       width: context.screenWidth * 0.09,
                       height: context.screenWidth * 0.09,
                       decoration: BoxDecoration(
-                        color: isSelected
-                            ? AppColors.primary
-                            : AppColors.surfaceBlurred,
+                        color:
+                            isSelected
+                                ? AppColors.primary
+                                : AppColors.surfaceBlurred,
                         border: Border.all(
-                          color: isSelected
-                              ? AppColors.primary
-                              : AppColors.surfaceBlurred,
+                          color:
+                              isSelected
+                                  ? AppColors.primary
+                                  : AppColors.surfaceBlurred,
                           width: 2,
                         ),
                         borderRadius: BorderRadius.circular(30),
@@ -94,11 +101,12 @@ class DateSelectionWidget extends StatelessWidget {
                         '${index + 1}',
                         style: AppTextStyles.bodySmall.copyWith(
                           fontWeight: FontWeight.bold,
-                          color: isSelected
-                              ? AppColors.surface
-                              : isAvailable 
-                                ? AppColors.onSurface 
-                                : AppColors.onSurface.withOpacity(0.5),
+                          color:
+                              isSelected
+                                  ? AppColors.surface
+                                  : isAvailable
+                                  ? AppColors.onSurface
+                                  : AppColors.onSurface.withOpacity(0.5),
                         ),
                       ),
                     ),
@@ -111,4 +119,4 @@ class DateSelectionWidget extends StatelessWidget {
       ),
     );
   }
-} 
+}

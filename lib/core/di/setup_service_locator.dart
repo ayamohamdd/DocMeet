@@ -32,11 +32,10 @@ class SetupSeviceLocator {
 
   static void registerDataSources() {
     sl.registerLazySingleton<AuthDataSource>(
-      () => AuthDataSourceImpl(firebaseAuthServices: sl<FirebaseAuthServices>()),
+      () =>
+          AuthDataSourceImpl(firebaseAuthServices: sl<FirebaseAuthServices>()),
     );
-    sl.registerLazySingleton<HomeDataSource>(
-      () => HomeDataSourceImpl(),
-    );
+    sl.registerLazySingleton<HomeDataSource>(() => HomeDataSourceImpl());
   }
 
   static void registerRepositories() {

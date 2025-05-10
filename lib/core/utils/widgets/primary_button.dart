@@ -33,7 +33,7 @@ class PrimaryButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           text,
-          style: AppTextStyles.bodyLarge.copyWith(color: AppColors.onPrimary),
+          style: AppTextStyles.bodyLarge.copyWith(color: AppColors.onSecondary),
         ),
       ),
     );

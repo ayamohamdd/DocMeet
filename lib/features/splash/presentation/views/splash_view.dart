@@ -48,7 +48,7 @@ class _SplashViewState extends State<SplashView>
       if (mounted) {
         final authCubit = SetupSeviceLocator.sl<AuthCubit>();
         if (authCubit.isAuthenticated()) {
-          GoRouter.of(context).pushReplacement(AppRouter.homeView);
+          GoRouter.of(context).pushReplacement(AppRouter.mainNavigationView);
         } else {
           GoRouter.of(context).pushReplacement(AppRouter.signInView);
         }

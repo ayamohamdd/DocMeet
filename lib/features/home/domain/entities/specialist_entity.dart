@@ -9,6 +9,7 @@ class SpecialistEntity {
   String? name;
   int? patientCount;
   int? price;
+  String? imageUrl;
   double? rating;
   SpecialistEntity({
     this.availabilityDays,
@@ -16,6 +17,7 @@ class SpecialistEntity {
     this.category,
     this.experienceYears,
     this.name,
+    this.imageUrl,
     this.patientCount,
     this.price,
     this.rating,

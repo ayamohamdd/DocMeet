@@ -8,12 +8,12 @@ import 'package:quest_task/features/auth/presentation/views/signup/views/signup_
 import 'package:quest_task/features/details/presentation/views/doctor_details_view.dart';
 import 'package:quest_task/features/home/domain/entities/specialist_entity.dart';
 import 'package:quest_task/features/home/presentation/manager/cubit/home_cubit.dart';
-import 'package:quest_task/features/home/presentation/views/home_view.dart';
+import 'package:quest_task/features/main_navigation/presentation/views/main_navigation_view.dart';
 import 'package:quest_task/features/splash/presentation/views/splash_view.dart';
 
 class AppRouter {
   static const String splashView = '/';
-  static const String homeView = '/home';
+  static const String mainNavigationView = '/main';
   static const String detailsView = '/detailsView';
 
   static const String signInView = '/login';
@@ -27,11 +27,11 @@ class AppRouter {
         builder: (context, state) => const SplashView(),
       ),
       GoRoute(
-        path: homeView,
+        path: mainNavigationView,
         builder:
             (context, state) => BlocProvider(
               create: (context) => HomeCubit()..getAllSpecialists(),
-              child: const HomeView(),
+              child: const MainNavigationView(),
             ),
       ),
       GoRoute(

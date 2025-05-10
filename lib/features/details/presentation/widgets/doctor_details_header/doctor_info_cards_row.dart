@@ -9,16 +9,20 @@ class DoctorInfoCardsRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
+      children: [
         DoctorInfoCard(
           icon: Icons.work_outline,
-          value: '12 years',
+          value: '${specialistEntity.experienceYears} years',
           label: 'Experience',
         ),
-        DoctorInfoCard(icon: Icons.star_border, value: '4.8', label: 'Rating'),
+        DoctorInfoCard(
+          icon: Icons.star_border,
+          value: '${specialistEntity.rating}',
+          label: 'Rating',
+        ),
         DoctorInfoCard(
           icon: Icons.person_outline,
-          value: '2500+',
+          value: '${specialistEntity.patientCount}',
           label: 'Patients',
         ),
       ],

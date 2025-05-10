@@ -44,12 +44,14 @@ class DoctorDetailsView extends StatelessWidget {
                     ),
                     SizedBox(
                       height: context.screenHeight * 0.4,
-                      child: DoctorDetailsHeader(specialistEntity: specialistEntity),
+                      child: DoctorDetailsHeader(
+                        specialistEntity: specialistEntity,
+                      ),
                     ),
                   ],
                 ),
               ),
-               DoctorDetailsBody(specialistEntity: specialistEntity,),
+              DoctorDetailsBody(specialistEntity: specialistEntity),
             ],
           ),
         ),

@@ -19,6 +19,7 @@ class SpecialistModel extends SpecialistEntity {
   int? price;
   @override
   double? rating;
+  String? imageUrl;
 
   SpecialistModel({
     List<AvailabilityDay>? availabilityDays,
@@ -28,48 +29,40 @@ class SpecialistModel extends SpecialistEntity {
     this.name,
     this.patientCount,
     this.price,
+    this.imageUrl,
     this.rating,
   }) : super(
-          availabilityDays: availabilityDays?.cast<AvailabilityDayEntity>(),
-          bio: bio,
-          category: category,
-          experienceYears: experienceYears,
-          name: name,
-          patientCount: patientCount,
-          price: price,
-          rating: rating,
-        ) {
-    print('Debug - Constructor availabilityDays: $availabilityDays');
-    print('Debug - Constructor availabilityDays length: ${availabilityDays?.length}');
+         availabilityDays: availabilityDays?.cast<AvailabilityDayEntity>(),
+         bio: bio,
+         category: category,
+         experienceYears: experienceYears,
+         name: name,
+         patientCount: patientCount,
+         price: price,
+         rating: rating,
+       ) {
     this.availabilityDays = availabilityDays?.cast<AvailabilityDayEntity>();
   }
 
   factory SpecialistModel.fromJson(Map<String, dynamic> json) {
-    print('Debug - Raw availability data: ${json['availability']}');
     final availabilityList =
         (json['availability'] as List<dynamic>?)
             ?.map((e) {
-              print('Debug - Processing availability item: $e');
               try {
                 if (e is Map<String, dynamic>) {
                   final result = AvailabilityDay.fromJson(e);
-                  print('Debug - Created AvailabilityDay instance: day=${result.day}, hours=${result.hours}');
                   return result;
                 } else {
-                  print('Debug - Invalid availability item format: $e');
                   return null;
                 }
               } catch (error) {
-                print('Debug - Error processing availability item: $error');
                 return null;
               }
             })
             .where((item) => item != null)
             .cast<AvailabilityDay>()
             .toList();
-    print('Debug - Final availability list length: ${availabilityList?.length}');
-    print('Debug - Final availability list: $availabilityList');
-    
+
     final model = SpecialistModel(
       availabilityDays: availabilityList,
       bio: json['bio'] as String?,
@@ -78,9 +71,12 @@ class SpecialistModel extends SpecialistEntity {
       name: json['name'] as String?,
       patientCount: json['patient_count'] as int?,
       price: json['price'] as int?,
+      imageUrl: json['image_url'] as String?,
       rating: (json['rating'] as num?)?.toDouble(),
     );
-    print('Debug - Created SpecialistModel with availability days: ${model.availabilityDays?.length}');
+    print(
+      'Debug - Created SpecialistModel with availability days: ${model.availabilityDays?.length}',
+    );
     return model;
   }
 
@@ -93,6 +89,7 @@ class SpecialistModel extends SpecialistEntity {
     'name': name,
     'patient_count': patientCount,
     'price': price,
+    'image_url': imageUrl,
     'rating': rating,
   };
 }

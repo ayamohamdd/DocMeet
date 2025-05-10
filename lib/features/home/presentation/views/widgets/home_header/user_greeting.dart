@@ -10,11 +10,8 @@ class UserGreeting extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text('Hello Aya', style: AppTextStyles.heading2),
-        Text(
-          'How are you today?',
-          style: AppTextStyles.bodySmall,
-        ),
+        Text('How are you today?', style: AppTextStyles.bodySmall),
       ],
     );
   }
-} 
+}

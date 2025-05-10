@@ -13,17 +13,16 @@ class HomeView extends StatelessWidget {
       backgroundColor: AppColors.surfaceVariant,
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: context.screenWidth * 0.05,
-            vertical: context.screenHeight * 0.03,
+          padding: EdgeInsets.only(
+            left: context.screenWidth * 0.05,
+            right: context.screenWidth * 0.05,
+            top: context.screenHeight * 0.03,
           ),
           child: Column(
             children: [
               const HomeHeader(),
               SizedBox(height: context.screenHeight * 0.03),
-              const Expanded(
-                child: HomeBody(),
-              ),
+              const Expanded(child: HomeBody()),
             ],
           ),
         ),

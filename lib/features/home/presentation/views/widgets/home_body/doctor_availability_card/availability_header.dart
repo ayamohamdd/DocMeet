@@ -6,13 +6,11 @@ import 'package:quest_task/core/utils/theme/text_styles.dart';
 class AvailabilityHeader extends StatelessWidget {
   // final String month;
   final int slotsCount;
-  
 
   const AvailabilityHeader({
     super.key,
     // required this.month,
     required this.slotsCount,
- 
   });
 
   @override
@@ -48,7 +46,7 @@ class AvailabilityHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                onPressed: (){},
+                onPressed: () {},
                 icon: const Icon(
                   Icons.arrow_back_ios,
                   size: 10,
@@ -69,7 +67,7 @@ class AvailabilityHeader extends StatelessWidget {
                 // overflow: TextOverflow.ellipsis,
               ),
               IconButton(
-                onPressed: (){},
+                onPressed: () {},
                 icon: const Icon(
                   Icons.arrow_forward_ios,
                   size: 10,
