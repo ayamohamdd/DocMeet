@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quest_task/core/constants/media_query_extension.dart';
-import 'package:quest_task/features/home/presentation/widgets/home_header/header_action_button.dart';
+import 'package:quest_task/features/home/presentation/views/widgets/home_header/header_action_button.dart';
 
 class HeaderActions extends StatelessWidget {
   const HeaderActions({super.key});

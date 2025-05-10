@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:quest_task/features/home/domain/entities/specialist_entity.dart';
 import 'doctor_info_card.dart';
 
 class DoctorInfoCardsRow extends StatelessWidget {
-  const DoctorInfoCardsRow({super.key});
-
+  const DoctorInfoCardsRow({super.key, required this.specialistEntity});
+  final SpecialistEntity specialistEntity;
   @override
   Widget build(BuildContext context) {
     return Row(

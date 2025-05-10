@@ -38,14 +38,40 @@ class SpecialistModel extends SpecialistEntity {
           patientCount: patientCount,
           price: price,
           rating: rating,
-        );
+        ) {
+    print('Debug - Constructor availabilityDays: $availabilityDays');
+    print('Debug - Constructor availabilityDays length: ${availabilityDays?.length}');
+    this.availabilityDays = availabilityDays?.cast<AvailabilityDayEntity>();
+  }
 
   factory SpecialistModel.fromJson(Map<String, dynamic> json) {
-    return SpecialistModel(
-      availabilityDays:
-          (json['availability_days'] as List<dynamic>?)
-              ?.map((e) => AvailabilityDay.fromJson(e as Map<String, dynamic>))
-              .toList(),
+    print('Debug - Raw availability data: ${json['availability']}');
+    final availabilityList =
+        (json['availability'] as List<dynamic>?)
+            ?.map((e) {
+              print('Debug - Processing availability item: $e');
+              try {
+                if (e is Map<String, dynamic>) {
+                  final result = AvailabilityDay.fromJson(e);
+                  print('Debug - Created AvailabilityDay instance: day=${result.day}, hours=${result.hours}');
+                  return result;
+                } else {
+                  print('Debug - Invalid availability item format: $e');
+                  return null;
+                }
+              } catch (error) {
+                print('Debug - Error processing availability item: $error');
+                return null;
+              }
+            })
+            .where((item) => item != null)
+            .cast<AvailabilityDay>()
+            .toList();
+    print('Debug - Final availability list length: ${availabilityList?.length}');
+    print('Debug - Final availability list: $availabilityList');
+    
+    final model = SpecialistModel(
+      availabilityDays: availabilityList,
       bio: json['bio'] as String?,
       category: json['category'] as String?,
       experienceYears: json['experience_years'] as int?,
@@ -54,16 +80,19 @@ class SpecialistModel extends SpecialistEntity {
       price: json['price'] as int?,
       rating: (json['rating'] as num?)?.toDouble(),
     );
+    print('Debug - Created SpecialistModel with availability days: ${model.availabilityDays?.length}');
+    return model;
   }
 
   Map<String, dynamic> toJson() => {
-        'availability_days': availabilityDays?.map((e) => (e as AvailabilityDay).toJson()).toList(),
-        'bio': bio,
-        'category': category,
-        'experience_years': experienceYears,
-        'name': name,
-        'patient_count': patientCount,
-        'price': price,
-        'rating': rating,
-      };
+    'availability':
+        availabilityDays?.map((e) => (e as AvailabilityDay).toJson()).toList(),
+    'bio': bio,
+    'category': category,
+    'experience_years': experienceYears,
+    'name': name,
+    'patient_count': patientCount,
+    'price': price,
+    'rating': rating,
+  };
 }

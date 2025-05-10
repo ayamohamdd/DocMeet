@@ -2,27 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:quest_task/core/utils/theme/app_colors.dart';
 import 'package:quest_task/core/constants/media_query_extension.dart';
 import 'package:quest_task/core/utils/theme/text_styles.dart';
+import 'package:quest_task/features/home/domain/entities/availability_day_entity.dart';
 
 class DateSelectionWidget extends StatelessWidget {
   final int selectedIndex;
   final Function(int) onDateSelected;
+  final List<AvailabilityDayEntity> availability;
 
   const DateSelectionWidget({
     super.key,
     this.selectedIndex = 0,
     required this.onDateSelected,
+    required this.availability,
   });
+
+  bool _isDayAvailable(String day) {
+    final dayAvailability = availability.firstWhere(
+      (a) => a.day?.toLowerCase() == day.toLowerCase(),
+      orElse: () => AvailabilityDayEntity(),
+    );
+    return (dayAvailability.hours?.isNotEmpty ?? false);
+  }
+
+  int _getAvailabilityIndex(String day) {
+    return availability.indexWhere((a) => a.day?.toLowerCase() == day.toLowerCase());
+  }
 
   @override
   Widget build(BuildContext context) {
     final weekDays = [
-      {'day': 'Mon', 'date': 16},
-      {'day': 'Tue', 'date': 17},
-      {'day': 'Wed', 'date': 18},
-      {'day': 'Thu', 'date': 19},
-      {'day': 'Fri', 'date': 20},
-      {'day': 'Sat', 'date': 21},
-      {'day': 'Sun', 'date': 22},
+      'Saturday',
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday',
     ];
 
     return SizedBox(
@@ -33,9 +48,13 @@ class DateSelectionWidget extends StatelessWidget {
         separatorBuilder: (context, index) =>
             SizedBox(width: context.screenWidth * 0.02),
         itemBuilder: (context, index) {
-          final isSelected = index == selectedIndex;
+          final day = weekDays[index];
+          final isAvailable = _isDayAvailable(day);
+          final availabilityIndex = isAvailable ? _getAvailabilityIndex(day) : -1;
+          final isSelected = isAvailable && availabilityIndex == selectedIndex;
+
           return GestureDetector(
-            onTap: () => onDateSelected(index),
+            onTap: isAvailable ? () => onDateSelected(availabilityIndex) : null,
             child: Container(
               decoration: BoxDecoration(
                 color: isSelected
@@ -48,9 +67,10 @@ class DateSelectionWidget extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      weekDays[index]['day'].toString(),
+                      day.substring(0, 3),
                       style: AppTextStyles.bodySmall.copyWith(
                         fontWeight: FontWeight.bold,
+                        color: isAvailable ? AppColors.onSurface : AppColors.onSurface.withOpacity(0.5),
                       ),
                     ),
                     const SizedBox(height: 4),
@@ -71,12 +91,14 @@ class DateSelectionWidget extends StatelessWidget {
                       ),
                       alignment: Alignment.center,
                       child: Text(
-                        weekDays[index]['date'].toString(),
+                        '${index + 1}',
                         style: AppTextStyles.bodySmall.copyWith(
                           fontWeight: FontWeight.bold,
                           color: isSelected
                               ? AppColors.surface
-                              : AppColors.onSurface,
+                              : isAvailable 
+                                ? AppColors.onSurface 
+                                : AppColors.onSurface.withOpacity(0.5),
                         ),
                       ),
                     ),

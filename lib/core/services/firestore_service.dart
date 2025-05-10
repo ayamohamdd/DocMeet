@@ -31,11 +31,15 @@ class FirestoreService<T> {
 
   Future<List<T>> getAll() async {
     final querySnapshot = await _firestore.collection(collection).get();
-    final documents =
-        querySnapshot.docs
-            .map((doc) => fromJson({...doc.data(), 'id': doc.id}))
-            .toList();
-    log('from service $documents');
+    log('Raw Firestore data: ${querySnapshot.docs.map((doc) => doc.data()).toList()}');
+    
+    final documents = querySnapshot.docs.map((doc) {
+      final data = {...doc.data(), 'id': doc.id};
+      log('Processing document: $data');
+      return fromJson(data);
+    }).toList();
+    
+    log('Processed documents: $documents');
     return documents;
   }
 

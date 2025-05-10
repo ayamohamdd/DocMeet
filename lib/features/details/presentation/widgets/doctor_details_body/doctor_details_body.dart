@@ -3,10 +3,11 @@ import 'package:quest_task/core/constants/app_colors.dart';
 import 'package:quest_task/core/constants/media_query_extension.dart';
 import 'package:quest_task/core/utils/theme/text_styles.dart';
 import 'package:quest_task/core/utils/theme/app_colors.dart';
+import 'package:quest_task/features/home/domain/entities/specialist_entity.dart';
 
 class DoctorDetailsBody extends StatelessWidget {
-  const DoctorDetailsBody({super.key});
-
+  const DoctorDetailsBody({super.key, required this.specialistEntity});
+  final SpecialistEntity specialistEntity;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,7 +39,7 @@ class DoctorDetailsBody extends StatelessWidget {
             ),
             SizedBox(height: context.screenHeight * 0.02),
             Text(
-              "Dr. William James is a board-certified neurologist with over 10 years of experience diagnosing and treating complex neurological disorders. He specializes in epilepsy, migraines, stroke care, and neurodegenerative diseases such as Parkinson’s and Alzheimer’s.",
+              "${specialistEntity.bio}",
               style: AppTextStyles.bodyMedium.copyWith(height: 1.5),
             ),
           ],

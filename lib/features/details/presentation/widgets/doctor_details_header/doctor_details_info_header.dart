@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:quest_task/core/utils/theme/app_colors.dart';
 import 'package:quest_task/core/constants/media_query_extension.dart';
 import 'package:quest_task/core/utils/theme/text_styles.dart';
+import 'package:quest_task/features/home/domain/entities/specialist_entity.dart';
 
 class DoctorDetailsInfoHeader extends StatelessWidget {
-  const DoctorDetailsInfoHeader({super.key});
+  const DoctorDetailsInfoHeader({super.key, required this.specialistEntity});
+  final SpecialistEntity specialistEntity;
 
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: context.screenHeight * 0.028,
+      top: context.screenHeight * 0.07,
       child: SizedBox(
         width: context.screenWidth * 0.35,
         height: context.screenHeight * 0.3,
@@ -21,28 +23,21 @@ class DoctorDetailsInfoHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Neurologist',
+                  specialistEntity.category ?? '',
                   style: AppTextStyles.bodyMedium.copyWith(
                     color: AppColors.onSurfaceVariant,
                   ),
                 ),
-                Text('Dr. William James', style: AppTextStyles.heading2),
+                Text(specialistEntity.name ?? '', style: AppTextStyles.heading2),
               ],
             ),
 
-            SizedBox(height: context.screenHeight * 0.01),
-            Text(
-              "MBBS, MD (Neuro), DM (Neurology), FRCP (UK), FINS, FAAN (USA)",
-              style: AppTextStyles.bodyMedium.copyWith(
-                color: AppColors.onSurfaceVariant,
-                fontSize: 12,
-              ),
-            ),
+          
             SizedBox(height: context.screenHeight * 0.02),
             Row(
               children: [
                 Text(
-                  '\$95',
+                  '\$${specialistEntity.price}',
                   style: AppTextStyles.heading2.copyWith(
                     color: AppColors.primary,
                     fontWeight: FontWeight.bold,

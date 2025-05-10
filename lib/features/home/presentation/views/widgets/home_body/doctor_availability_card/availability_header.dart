@@ -4,17 +4,15 @@ import 'package:quest_task/core/constants/media_query_extension.dart';
 import 'package:quest_task/core/utils/theme/text_styles.dart';
 
 class AvailabilityHeader extends StatelessWidget {
-  final String month;
+  // final String month;
   final int slotsCount;
-  final VoidCallback onPreviousMonth;
-  final VoidCallback onNextMonth;
+  
 
   const AvailabilityHeader({
     super.key,
-    required this.month,
+    // required this.month,
     required this.slotsCount,
-    required this.onPreviousMonth,
-    required this.onNextMonth,
+ 
   });
 
   @override
@@ -50,7 +48,7 @@ class AvailabilityHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               IconButton(
-                onPressed: onPreviousMonth,
+                onPressed: (){},
                 icon: const Icon(
                   Icons.arrow_back_ios,
                   size: 10,
@@ -62,7 +60,7 @@ class AvailabilityHeader extends StatelessWidget {
               ),
 
               Text(
-                month,
+                'May',
                 style: AppTextStyles.bodySmall.copyWith(
                   color: AppColors.surface,
                   fontWeight: FontWeight.bold,
@@ -71,7 +69,7 @@ class AvailabilityHeader extends StatelessWidget {
                 // overflow: TextOverflow.ellipsis,
               ),
               IconButton(
-                onPressed: onNextMonth,
+                onPressed: (){},
                 icon: const Icon(
                   Icons.arrow_forward_ios,
                   size: 10,

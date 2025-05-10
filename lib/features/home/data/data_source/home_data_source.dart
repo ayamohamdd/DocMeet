@@ -16,7 +16,7 @@ class HomeDataSourceImpl extends HomeDataSource {
   @override
   Future<List<SpecialistModel>> getAllSpecialist() async {
     final result = await specialistService.getAll();
-    log('from ds $result');
+    log('from ds ${result[0].availabilityDays}');
     return result;
   }
 }

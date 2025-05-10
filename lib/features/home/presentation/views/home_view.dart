@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quest_task/core/utils/theme/app_colors.dart';
 import 'package:quest_task/core/constants/media_query_extension.dart';
-import 'package:quest_task/features/home/presentation/widgets/home_body/home_body.dart';
-import 'package:quest_task/features/home/presentation/widgets/home_header/home_header.dart';
+import 'package:quest_task/features/home/presentation/views/widgets/home_body/home_body.dart';
+import 'package:quest_task/features/home/presentation/views/widgets/home_header/home_header.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

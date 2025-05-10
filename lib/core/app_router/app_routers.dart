@@ -6,6 +6,7 @@ import 'package:quest_task/features/auth/presentation/manager/cubit/auth_cubit.d
 import 'package:quest_task/features/auth/presentation/views/signin/views/login_view.dart';
 import 'package:quest_task/features/auth/presentation/views/signup/views/signup_view.dart';
 import 'package:quest_task/features/details/presentation/views/doctor_details_view.dart';
+import 'package:quest_task/features/home/domain/entities/specialist_entity.dart';
 import 'package:quest_task/features/home/presentation/manager/cubit/home_cubit.dart';
 import 'package:quest_task/features/home/presentation/views/home_view.dart';
 import 'package:quest_task/features/splash/presentation/views/splash_view.dart';
@@ -35,7 +36,11 @@ class AppRouter {
       ),
       GoRoute(
         path: detailsView,
-        builder: (context, state) => const DoctorDetailsView(),
+        builder: (context, state) {
+          final SpecialistEntity specialistEntity =
+              state.extra as SpecialistEntity;
+          return DoctorDetailsView(specialistEntity: specialistEntity);
+        },
       ),
       GoRoute(
         path: signInView,
