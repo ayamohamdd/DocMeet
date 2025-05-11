@@ -1,24 +1,24 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StorageService {
-  static const String _tokenKey = 'auth_token';
+  static const String _userIdKey = 'user_id';
   final SharedPreferences _prefs;
 
   StorageService(this._prefs);
 
-  Future<void> saveToken(String token) async {
-    await _prefs.setString(_tokenKey, token);
+  Future<void> saveUserId(String userId) async {
+    await _prefs.setString(_userIdKey, userId);
   }
 
-  String? getToken() {
-    return _prefs.getString(_tokenKey);
+  String? getUserId() {
+    return _prefs.getString(_userIdKey);
   }
 
-  Future<void> removeToken() async {
-    await _prefs.remove(_tokenKey);
+  Future<void> removeUserId() async {
+    await _prefs.remove(_userIdKey);
   }
 
-  bool hasToken() {
-    return _prefs.containsKey(_tokenKey);
+  bool hasUserId() {
+    return _prefs.containsKey(_userIdKey);
   }
 }

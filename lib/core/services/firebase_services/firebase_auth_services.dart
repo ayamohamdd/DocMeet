@@ -15,14 +15,7 @@ class FirebaseAuthServices {
         .signInWithEmailAndPassword(email: email, password: password);
 
     await _updateFcmToken(userCredential.user!.uid);
-    final token = await userCredential.user?.getIdToken();
-    if (token == null) {
-      throw FirebaseAuthException(
-        code: 'token-error',
-        message: 'Failed to get authentication token',
-      );
-    }
-    return token;
+    return userCredential.user!.uid;
   }
 
   Future<String> signUp({
@@ -43,14 +36,7 @@ class FirebaseAuthServices {
     });
 
     await _updateFcmToken(uid);
-    final token = await userCredential.user?.getIdToken();
-    if (token == null) {
-      throw FirebaseAuthException(
-        code: 'token-error',
-        message: 'Failed to get authentication token',
-      );
-    }
-    return token;
+    return uid;
   }
 
   Future<void> signOut() async {

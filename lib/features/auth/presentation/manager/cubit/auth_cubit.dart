@@ -20,9 +20,9 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthSignInLoadingState());
     final result = await _signInUseCase.call(email, password);
     result.fold((l) => emit(AuthSignInErrorState(error: l.toString())), (
-      token,
+      userId,
     ) async {
-      await _storageService.saveToken(token);
+      await _storageService.saveUserId(userId);
       emit(AuthSignInSuccessState());
     });
   }
@@ -31,21 +31,19 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthSignUpLoadingState());
     final result = await _signUpUseCase.call(name, email, password);
     result.fold((l) => emit(AuthSignUpErrorState(error: l.toString())), (
-      token,
+      userId,
     ) async {
-      await _storageService.saveToken(token);
+      await _storageService.saveUserId(userId);
       emit(AuthSignUpSuccessState());
     });
   }
 
   Future<void> signOut() async {
-    await _storageService.removeToken();
+    await _storageService.removeUserId();
     emit(AuthInitialState());
   }
 
   bool isAuthenticated() {
-    //  _storageService.removeToken();
-
-    return _storageService.hasToken();
+    return _storageService.hasUserId();
   }
 }
