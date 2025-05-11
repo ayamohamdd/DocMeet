@@ -6,8 +6,15 @@ import 'package:shimmer/shimmer.dart';
 import 'package:quest_task/core/utils/theme/app_colors.dart';
 
 class DoctorImage extends StatelessWidget {
-  const DoctorImage({super.key, required this.imageUrl});
+  const DoctorImage({
+    super.key,
+    required this.imageUrl,
+    required this.width,
+    required this.height,
+  });
   final String imageUrl;
+  final double width;
+  final double? height;
 
   static const String _defaultDoctorImage =
       'https://tndrdtnxzkqtuedtpohi.supabase.co/storage/v1/object/public/images//pngtree-doctor-avatar-icon-png-image_15738245.png';
@@ -20,8 +27,8 @@ class DoctorImage extends StatelessWidget {
       child: Image.network(
         imageUrl,
         fit: BoxFit.contain,
-        width: context.screenWidth * 0.7,
-        height: context.screenHeight * 0.7,
+        width: width,
+        height: height,
         loadingBuilder: (context, child, loadingProgress) {
           if (loadingProgress == null) return child;
           return Shimmer.fromColors(
@@ -30,8 +37,8 @@ class DoctorImage extends StatelessWidget {
             child: Image.network(
               _defaultDoctorImage,
               fit: BoxFit.contain,
-              width: context.screenWidth * 0.7,
-              height: context.screenHeight * 0.7,
+              width: width,
+              height: height,
               errorBuilder: (context, error, stackTrace) {
                 return Container(
                   width: context.screenWidth * 0.7,

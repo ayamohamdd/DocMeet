@@ -4,11 +4,11 @@ import 'package:quest_task/core/utils/errors/failure.dart';
 class AuthErrorHandler {
   static String getErrorMessage(Failure failure) {
     switch (failure.runtimeType) {
-      case ServerFailure:
+      case ServerFailure _:
         return _handleServerError(failure as ServerFailure);
-      case NetworkFailure:
+      case NetworkFailure _:
         return 'Please check your internet connection';
-      case ValidationFailure:
+      case ValidationFailure _:
         return (failure as ValidationFailure).message;
       default:
         return 'An unexpected error occurred';

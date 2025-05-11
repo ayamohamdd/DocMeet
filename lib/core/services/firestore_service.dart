@@ -50,6 +50,22 @@ class FirestoreService<T> {
     return documents;
   }
 
+  Future<List<T>> getWhere(String field, dynamic isEqualTo) async {
+    final querySnapshot =
+        await _firestore
+            .collection(collection)
+            .where(field, isEqualTo: isEqualTo)
+            .get();
+
+    final documents =
+        querySnapshot.docs.map((doc) {
+          final data = {...doc.data(), 'id': doc.id};
+          return fromJson(data);
+        }).toList();
+
+    return documents;
+  }
+
   Future<void> update(String id, T data) async {
     log('Updating document with ID: $id in collection: $collection');
     final jsonData = toJson(data);

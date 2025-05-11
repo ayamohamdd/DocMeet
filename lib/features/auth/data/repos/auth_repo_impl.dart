@@ -13,10 +13,10 @@ class AuthRepoImpl extends AuthRepo {
   @override
   Future<Either<Failure, String>> signIn(String email, String password) async {
     try {
-      final token = await authDataSource.signIn(email, password);
+      final userId = await authDataSource.signIn(email, password);
 
-      dev.log("token $token");
-      return right(token);
+      dev.log("userId $userId");
+      return right(userId);
     } on FirebaseAuthException catch (e) {
       return left(AuthFailure.fromFirebaseAuthException(e));
     } catch (e) {
@@ -36,9 +36,9 @@ class AuthRepoImpl extends AuthRepo {
     String password,
   ) async {
     try {
-      final token = await authDataSource.signUp(name, email, password);
+      final userId = await authDataSource.signUp(name, email, password);
 
-      return right(token);
+      return right(userId);
     } on FirebaseAuthException catch (e) {
       return left(AuthFailure.fromFirebaseAuthException(e));
     } catch (e) {

@@ -15,7 +15,11 @@ class DoctorDetailsHeader extends StatelessWidget {
       children: [
         Transform.translate(
           offset: Offset(context.screenWidth * 0.15, 0),
-          child: DoctorImage(imageUrl: specialistEntity.imageUrl!),
+          child: DoctorImage(
+            imageUrl: specialistEntity.imageUrl!,
+            width: context.screenWidth * 0.7,
+            height: context.screenHeight * 0.7,
+          ),
         ),
         DoctorDetailsInfoHeader(specialistEntity: specialistEntity),
         Align(

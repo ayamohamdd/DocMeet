@@ -35,7 +35,11 @@ class DoctorCard extends StatelessWidget {
         child: Stack(
           children: [
             DoctorInfo(specialistEntity: specialist),
-            DoctorImage(imageUrl: specialist.imageUrl!),
+            DoctorImage(
+              imageUrl: specialist.imageUrl!,
+              width: context.screenWidth * 0.7,
+              height: context.screenHeight * 0.7,
+            ),
             DoctorAvailabilityCard(
               availability: specialist.availabilityDays ?? [],
             ),

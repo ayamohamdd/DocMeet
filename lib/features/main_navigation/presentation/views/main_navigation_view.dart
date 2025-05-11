@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quest_task/core/utils/theme/app_colors.dart';
+import 'package:quest_task/features/appointment/presentation/views/appointment_view.dart';
 import 'package:quest_task/features/home/presentation/views/home_view.dart';
-import 'package:quest_task/features/availability/presentation/views/availability_view.dart';
 import 'package:quest_task/features/profile/presentation/views/profile_view.dart';
 
 class MainNavigationView extends StatefulWidget {
@@ -19,7 +19,7 @@ class _MainNavigationViewState extends State<MainNavigationView>
 
   final List<Widget> _screens = [
     const HomeView(),
-    const AvailabilityView(),
+    const AppointmentsView(),
     const ProfileView(),
   ];
 
@@ -95,9 +95,9 @@ class _MainNavigationViewState extends State<MainNavigationView>
                     index: 0,
                   ),
                   _buildNavItem(
-                    icon: Icons.calendar_today_outlined,
-                    activeIcon: Icons.calendar_today,
-                    label: 'Availability',
+                    icon: Icons.event_note_outlined,
+                    activeIcon: Icons.event_note,
+                    label: 'Appointments',
                     index: 1,
                   ),
                   _buildNavItem(

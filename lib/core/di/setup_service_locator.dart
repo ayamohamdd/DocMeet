@@ -8,17 +8,29 @@ import 'package:quest_task/features/auth/domain/use_cases/signin_use_case.dart';
 import 'package:quest_task/features/auth/domain/use_cases/signup_use_case.dart';
 import 'package:quest_task/features/auth/presentation/manager/cubit/auth_cubit.dart';
 import 'package:quest_task/core/services/storage_service.dart';
-import 'package:quest_task/features/details/domain/use_cases/book_appointment_use_case.dart';
-import 'package:quest_task/features/details/presentation/manager/cubit/appointment_cubit.dart';
+import 'package:quest_task/features/appointment/domain/use_cases/book_appointment_use_case.dart';
+import 'package:quest_task/features/appointment/domain/use_cases/cancel_appointment_use_case.dart';
+import 'package:quest_task/features/appointment/domain/use_cases/reschedule_appointment_use_case.dart';
+import 'package:quest_task/features/appointment/presentation/manager/cubit/appointment_cubit.dart';
+import 'package:quest_task/features/profile/data/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:quest_task/features/home/data/data_source/home_data_source.dart';
 import 'package:quest_task/features/home/data/repos/home_repo_impl.dart';
 import 'package:quest_task/features/home/domain/repos/home_repo.dart';
 import 'package:quest_task/features/home/domain/use_cases/get_all_specialists_use_case.dart';
 import 'package:quest_task/features/home/presentation/manager/cubit/home_cubit.dart';
-import 'package:quest_task/features/details/data/data_source/appointment_data_source.dart';
-import 'package:quest_task/features/details/data/repos/appointment_repo_impl.dart';
-import 'package:quest_task/features/details/domain/repos/appointment_repo.dart';
+import 'package:quest_task/features/appointment/data/data_source/appointment_data_source.dart';
+import 'package:quest_task/features/appointment/data/repos/appointment_repo_impl.dart';
+import 'package:quest_task/features/appointment/domain/repos/appointment_repo.dart';
+import 'package:quest_task/features/appointment/domain/use_cases/fetch_user_appointments_use_case.dart';
+import 'package:quest_task/core/services/firestore_service.dart';
+import 'package:quest_task/features/appointment/data/models/appointment_model.dart';
+import 'package:quest_task/features/profile/data/data_source/profile_data_source.dart';
+import 'package:quest_task/features/profile/data/repos/profile_repo_impl.dart';
+import 'package:quest_task/features/profile/domain/repos/profile_repo.dart';
+import 'package:quest_task/features/profile/domain/use_cases/get_user_data_use_case.dart';
+import 'package:quest_task/features/profile/domain/use_cases/sign_out_use_case.dart';
+import 'package:quest_task/features/profile/presentation/manager/cubit/profile_cubit.dart';
 
 class SetupSeviceLocator {
   static final sl = GetIt.asNewInstance();
@@ -41,7 +53,19 @@ class SetupSeviceLocator {
           AuthDataSourceImpl(firebaseAuthServices: sl<FirebaseAuthServices>()),
     );
     sl.registerLazySingleton<HomeDataSource>(() => HomeDataSourceImpl());
-    sl.registerLazySingleton<AppointmentDataSource>(() => AppointmentDataSourceImpl());
+    sl.registerLazySingleton<AppointmentDataSource>(
+      () => AppointmentDataSourceImpl(),
+    );
+    sl.registerLazySingleton<ProfileDataSource>(
+      () => ProfileDataSourceImpl(
+        userService: FirestoreService<UserModel>(
+          collection: 'users',
+          fromJson: UserModel.fromJson,
+          toJson: (user) => user.toJson(),
+        ),
+        authService: sl<FirebaseAuthServices>(),
+      ),
+    );
   }
 
   static void registerRepositories() {
@@ -52,7 +76,17 @@ class SetupSeviceLocator {
       () => HomeRepoImpl(homeDataSource: sl<HomeDataSource>()),
     );
     sl.registerLazySingleton<AppointmentRepo>(
-      () => AppointmentRepoImpl(appointmentDataSource: sl<AppointmentDataSource>()),
+      () => AppointmentRepoImpl(
+        appointmentDataSource: sl<AppointmentDataSource>(),
+        firestoreService: FirestoreService<AppointmentModel>(
+          collection: 'appointments',
+          fromJson: AppointmentModel.fromJson,
+          toJson: (appointment) => appointment.toJson(),
+        ),
+      ),
+    );
+    sl.registerLazySingleton<ProfileRepo>(
+      () => ProfileRepoImpl(profileDataSource: sl<ProfileDataSource>()),
     );
   }
 
@@ -66,8 +100,24 @@ class SetupSeviceLocator {
     sl.registerLazySingleton<GetAllSpecialistsUseCase>(
       () => GetAllSpecialistsUseCase(homeRepo: sl<HomeRepo>()),
     );
-       sl.registerLazySingleton<BookAppointmentUseCase>(
+    sl.registerLazySingleton<BookAppointmentUseCase>(
       () => BookAppointmentUseCase(appointmentRepo: sl<AppointmentRepo>()),
+    );
+    sl.registerLazySingleton<FetchUserAppointmentsUseCase>(
+      () =>
+          FetchUserAppointmentsUseCase(appointmentRepo: sl<AppointmentRepo>()),
+    );
+    sl.registerLazySingleton<CancelAppointmentUseCase>(
+      () => CancelAppointmentUseCase(sl<AppointmentRepo>()),
+    );
+    sl.registerLazySingleton<RescheduleAppointmentUseCase>(
+      () => RescheduleAppointmentUseCase(sl<AppointmentRepo>()),
+    );
+    sl.registerLazySingleton<GetUserDataUseCase>(
+      () => GetUserDataUseCase(sl<ProfileRepo>()),
+    );
+    sl.registerLazySingleton<SignOutUseCase>(
+      () => SignOutUseCase(sl<ProfileRepo>()),
     );
   }
 
@@ -75,7 +125,7 @@ class SetupSeviceLocator {
     sl.registerLazySingleton<AuthCubit>(() => AuthCubit());
     sl.registerLazySingleton<HomeCubit>(() => HomeCubit());
     sl.registerLazySingleton<AppointmentCubit>(() => AppointmentCubit());
-
+    sl.registerLazySingleton<ProfileCubit>(() => ProfileCubit());
   }
 
   static void registerCore() {

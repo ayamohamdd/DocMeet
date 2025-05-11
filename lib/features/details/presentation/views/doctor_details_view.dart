@@ -8,8 +8,8 @@ import 'package:quest_task/core/utils/widgets/primary_button.dart';
 import 'package:quest_task/features/details/presentation/widgets/doctor_details_body/doctor_details_body.dart';
 import 'package:quest_task/features/details/presentation/widgets/doctor_details_header/doctor_details_header.dart';
 import 'package:quest_task/features/home/domain/entities/specialist_entity.dart';
-import 'package:quest_task/features/details/presentation/manager/cubit/appointment_cubit.dart';
-import 'package:quest_task/features/details/domain/repos/appointment_repo.dart';
+import 'package:quest_task/features/appointment/presentation/manager/cubit/appointment_cubit.dart';
+import 'package:quest_task/features/appointment/domain/repos/appointment_repo.dart';
 
 class DoctorDetailsView extends StatelessWidget {
   const DoctorDetailsView({

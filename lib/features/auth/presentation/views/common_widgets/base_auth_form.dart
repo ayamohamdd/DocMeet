@@ -18,6 +18,7 @@ class BaseAuthForm extends StatefulWidget {
   final String? Function(String?)? nameValidator;
   final String? Function(String?)? emailValidator;
   final String? Function(String?)? passwordValidator;
+  final bool showPasswordStrength;
 
   const BaseAuthForm({
     super.key,
@@ -30,6 +31,7 @@ class BaseAuthForm extends StatefulWidget {
     this.nameValidator,
     this.emailValidator,
     this.passwordValidator,
+    this.showPasswordStrength = false,
   });
 
   @override
@@ -114,7 +116,6 @@ class _BaseAuthFormState extends State<BaseAuthForm> {
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
-
       child: Column(
         children: [
           if (widget.nameValidator != null) ...[
@@ -124,7 +125,6 @@ class _BaseAuthFormState extends State<BaseAuthForm> {
               controller: _nameController,
               prefixIcon: const Icon(Icons.person_outline),
               validator: widget.nameValidator,
-              // enabled: !_isLoading,
             ),
             SizedBox(height: context.screenHeight * 0.02),
           ],
@@ -135,7 +135,6 @@ class _BaseAuthFormState extends State<BaseAuthForm> {
             keyboardType: TextInputType.emailAddress,
             prefixIcon: const Icon(Icons.email_outlined),
             validator: widget.emailValidator ?? _validateEmail,
-            // enabled: !_isLoading,
           ),
           SizedBox(height: context.screenHeight * 0.02),
           DefaultTextField(
@@ -146,9 +145,8 @@ class _BaseAuthFormState extends State<BaseAuthForm> {
             prefixIcon: const Icon(Icons.lock_outline),
             suffixIcon: _buildPasswordVisibilityToggle(),
             validator: widget.passwordValidator ?? _validatePassword,
-            // enabled: !_isLoading,
           ),
-          if (_passwordController.text.isNotEmpty) ...[
+          if (widget.showPasswordStrength && _passwordController.text.isNotEmpty) ...[
             SizedBox(height: context.screenHeight * 0.01),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -169,7 +167,6 @@ class _BaseAuthFormState extends State<BaseAuthForm> {
           PrimaryButton(
             text: widget.submitButtonText,
             onPressed: _handleSubmit,
-            // isLoading: _isLoading,
           ),
           SizedBox(height: context.screenHeight * 0.02),
           _buildAlternateActionLink(),
@@ -237,17 +234,19 @@ class _BaseAuthFormState extends State<BaseAuthForm> {
     if (value == null || value.isEmpty) {
       return 'Please enter your password';
     }
-    if (value.length < 8) {
-      return 'Password must be at least 8 characters';
-    }
-    if (!value.contains(RegExp(r'[A-Z]'))) {
-      return 'Password must contain at least one uppercase';
-    }
-    if (!value.contains(RegExp(r'[0-9]'))) {
-      return 'Password must contain at least one number';
-    }
-    if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
-      return 'Password must contain at least one special character';
+    if (widget.showPasswordStrength) {
+      if (value.length < 8) {
+        return 'Password must be at least 8 characters';
+      }
+      if (!value.contains(RegExp(r'[A-Z]'))) {
+        return 'Password must contain at least one uppercase';
+      }
+      if (!value.contains(RegExp(r'[0-9]'))) {
+        return 'Password must contain at least one number';
+      }
+      if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+        return 'Password must contain at least one special character';
+      }
     }
     return null;
   }

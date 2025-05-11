@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:quest_task/core/app_router/app_routers.dart';
 import 'package:quest_task/core/di/setup_service_locator.dart';
-import 'package:quest_task/core/services/firebase_services/firebase_auth_services.dart';
 import 'package:quest_task/core/utils/theme/app_theme.dart';
 
 void main() async {

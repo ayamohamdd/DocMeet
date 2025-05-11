@@ -26,6 +26,7 @@ class SignUpForm extends StatelessWidget {
       alternateActionButtonText: 'Sign In',
       onAlternateAction: onLogin,
       nameValidator: _validateName,
+      showPasswordStrength: true,
     );
   }
 }
