@@ -1,4 +1,4 @@
-# Specialist Booking App
+# DocMeet
 
 A Flutter application that enables users to book appointments with specialists (doctors, consultants, trainers) in a simple and efficient way.
 
