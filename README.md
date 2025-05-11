@@ -1,4 +1,4 @@
-# Specialist Booking App
+# DocMeet
 
 A Flutter application that enables users to book appointments with specialists (doctors, consultants, trainers) in a simple and efficient way.
 
@@ -70,7 +70,7 @@ The app follows Clean Architecture principles with the following layers:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/ayamohamdd/Quest_Task.git
+git clone https://github.com/ayamohamdd/DocMeet.git
 ```
 
 2. Install dependencies:
