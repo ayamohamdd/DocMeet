@@ -1,14 +1,14 @@
 class AppointmentEntity {
   String? day;
   String? hour;
-  String? specialistName;
+  String? specialistId;
   String? status;
   String? uid;
 
   AppointmentEntity({
     this.day,
     this.hour,
-    this.specialistName,
+    this.specialistId,
     this.status,
     this.uid,
   });

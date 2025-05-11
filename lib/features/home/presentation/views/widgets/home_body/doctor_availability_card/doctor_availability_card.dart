@@ -38,7 +38,7 @@ class _DoctorAvailabilityCardState extends State<DoctorAvailabilityCard> {
     }
 
     final selectedDay = widget.availability[selectedDateIndex];
-    final slotsCount = selectedDay.hours?.length ?? 0;
+    final slotsCount = selectedDay.hours?.where((hour) => hour['status'] == 'available').length ?? 0;
     return slotsCount;
   }
 

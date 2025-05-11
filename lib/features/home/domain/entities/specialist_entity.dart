@@ -2,6 +2,7 @@
 import 'package:quest_task/features/home/domain/entities/availability_day_entity.dart';
 
 class SpecialistEntity {
+  String? id;
   List<AvailabilityDayEntity>? availabilityDays;
   String? bio;
   String? category;
@@ -12,6 +13,7 @@ class SpecialistEntity {
   String? imageUrl;
   double? rating;
   SpecialistEntity({
+    this.id,
     this.availabilityDays,
     this.bio,
     this.category,

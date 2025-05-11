@@ -8,11 +8,13 @@ class TimeChip extends StatelessWidget {
     required this.time,
     required this.isSelected,
     required this.onSelected,
+    this.isAvailable = true,
   });
 
   final String time;
   final bool isSelected;
-  final ValueChanged<bool> onSelected;
+  final ValueChanged<bool>? onSelected;
+  final bool isAvailable;
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +22,21 @@ class TimeChip extends StatelessWidget {
       label: Text(time),
       selected: isSelected,
       onSelected: onSelected,
-      backgroundColor: AppColors.surfaceVariant,
+      backgroundColor: isAvailable ? AppColors.surfaceVariant : AppColors.surfaceVariant.withOpacity(0.5),
       selectedColor: AppColors.primary,
       labelStyle: AppTextStyles.bodyMedium.copyWith(
-        color: isSelected ? Colors.white : AppColors.onSurface,
+        color: isSelected 
+          ? Colors.white 
+          : isAvailable 
+            ? AppColors.onSurface 
+            : AppColors.onSurface.withOpacity(0.5),
       ),
       side: BorderSide(
-        color: isSelected ? AppColors.primary : AppColors.onPrimary,
+        color: isSelected 
+          ? AppColors.primary 
+          : isAvailable 
+            ? AppColors.onPrimary 
+            : AppColors.onPrimary.withOpacity(0.5),
         width: 1.5,
       ),
     );

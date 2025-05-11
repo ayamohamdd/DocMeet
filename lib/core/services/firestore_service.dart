@@ -22,11 +22,15 @@ class FirestoreService<T> {
   }
 
   Future<T?> get(String id) async {
+    log('Fetching document with ID: $id from collection: $collection');
     final docSnapshot = await _firestore.collection(collection).doc(id).get();
     if (!docSnapshot.exists) {
+      log('Document not found with ID: $id');
       return null;
     }
-    return fromJson({...docSnapshot.data()!, 'id': docSnapshot.id});
+    final data = {...docSnapshot.data()!, 'id': docSnapshot.id};
+    log('Retrieved document data: $data');
+    return fromJson(data);
   }
 
   Future<List<T>> getAll() async {
@@ -47,7 +51,10 @@ class FirestoreService<T> {
   }
 
   Future<void> update(String id, T data) async {
-    await _firestore.collection(collection).doc(id).update(toJson(data));
+    log('Updating document with ID: $id in collection: $collection');
+    final jsonData = toJson(data);
+    log('Update data: $jsonData');
+    await _firestore.collection(collection).doc(id).update(jsonData);
   }
 
   Future<void> delete(String id) async {

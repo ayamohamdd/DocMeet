@@ -51,7 +51,6 @@ class _MainNavigationViewState extends State<MainNavigationView>
     return Scaffold(
       body: _screens[_currentIndex],
       bottomNavigationBar: Container(
-        // height: 90,
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
           gradient: LinearGradient(

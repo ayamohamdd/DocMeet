@@ -1,12 +1,12 @@
 import 'package:quest_task/features/details/domain/entities/appointment_entity.dart';
 
-class AppointmentModel extends AppointmentEntity{
+class AppointmentModel extends AppointmentEntity {
   @override
   String? day;
   @override
   String? hour;
   @override
-  String? specialistName;
+  String? specialistId;
   @override
   String? status;
   @override
@@ -15,16 +15,22 @@ class AppointmentModel extends AppointmentEntity{
   AppointmentModel({
     this.day,
     this.hour,
-    this.specialistName,
+    this.specialistId,
     this.status,
     this.uid,
-  }):super(day: day,hour: hour,specialistName: specialistName,status: status, uid: uid);
+  }) : super(
+         day: day,
+         hour: hour,
+         specialistId: specialistId,
+         status: status,
+         uid: uid,
+       );
 
   factory AppointmentModel.fromJson(Map<String, dynamic> json) {
     return AppointmentModel(
       day: json['day'] as String?,
       hour: json['hour'] as String?,
-      specialistName: json['specialist_name'] as String?,
+      specialistId: json['specialist_id'] as String?,
       status: json['status'] as String?,
       uid: json['uid'] as String?,
     );
@@ -33,7 +39,7 @@ class AppointmentModel extends AppointmentEntity{
   Map<String, dynamic> toJson() => {
     'day': day,
     'hour': hour,
-    'specialist_name': specialistName,
+    'specialist_id': specialistId,
     'status': status,
     'uid': uid,
   };

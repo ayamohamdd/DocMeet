@@ -36,13 +36,18 @@ class TimeGrid extends StatelessWidget {
       ),
       itemCount: hours.length,
       itemBuilder: (context, index) {
-        final time = hours[index];
+        final hourMap = hours[index];
+        final time = hourMap['hour'] as String;
+        final status = hourMap['status'] as String;
+        final isAvailable = status == 'available';
+        
         return TimeChip(
           time: time,
           isSelected: time == selectedTime,
-          onSelected: (selected) {
+          onSelected: isAvailable ? (selected) {
             onTimeSelected(selected ? time : null);
-          },
+          } : null,
+          isAvailable: isAvailable,
         );
       },
     );

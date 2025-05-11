@@ -22,6 +22,32 @@ class AvailabilityTab extends StatefulWidget {
 class _AvailabilityTabState extends State<AvailabilityTab> {
   String? selectedDay;
   String? selectedTime;
+  late SpecialistEntity _currentSpecialist;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentSpecialist = widget.specialistEntity;
+  }
+
+  void _updateSpecialist(SpecialistEntity updatedSpecialist) {
+    setState(() {
+      _currentSpecialist = updatedSpecialist;
+      if (selectedDay != null && selectedTime != null) {
+        final day = _currentSpecialist.availabilityDays?.firstWhere(
+          (d) => d.day == selectedDay,
+        );
+        if (day != null) {
+          final hour = day.hours?.firstWhere(
+            (h) => h['hour'] == selectedTime && h['status'] == 'available',
+          );
+          if (hour == null) {
+            selectedTime = null;
+          }
+        }
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +82,9 @@ class _AvailabilityTabState extends State<AvailabilityTab> {
           height: context.screenHeight * 0.06,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: widget.specialistEntity.availabilityDays?.length ?? 0,
+            itemCount: _currentSpecialist.availabilityDays?.length ?? 0,
             itemBuilder: (context, index) {
-              final day = widget.specialistEntity.availabilityDays?[index].day;
+              final day = _currentSpecialist.availabilityDays?[index].day;
               return DayChip(
                 day: day ?? '',
                 isSelected: day == selectedDay,
@@ -87,7 +113,7 @@ class _AvailabilityTabState extends State<AvailabilityTab> {
         SizedBox(height: context.screenHeight * 0.02),
         TimeGrid(
           selectedDay: selectedDay!,
-          availabilityDays: widget.specialistEntity.availabilityDays ?? [],
+          availabilityDays: _currentSpecialist.availabilityDays ?? [],
           selectedTime: selectedTime,
           onTimeSelected: (time) {
             setState(() {
@@ -100,7 +126,20 @@ class _AvailabilityTabState extends State<AvailabilityTab> {
   }
 
   Widget _buildBookingButton() {
-    return BlocBuilder<AppointmentCubit, AppointmentState>(
+    return BlocConsumer<AppointmentCubit, AppointmentState>(
+      listener: (context, state) {
+        if (state is BookingAppointmentSuccess) {
+          // Refresh the specialist data after successful booking
+          context
+              .read<AppointmentCubit>()
+              .refreshSpecialist(_currentSpecialist.id!)
+              .then((updatedSpecialist) {
+                if (updatedSpecialist != null) {
+                  _updateSpecialist(updatedSpecialist);
+                }
+              });
+        }
+      },
       builder: (context, state) {
         final userId = FirebaseAuth.instance.currentUser?.uid;
         if (userId == null) {
@@ -121,7 +160,7 @@ class _AvailabilityTabState extends State<AvailabilityTab> {
                         context.read<AppointmentCubit>().bookAppointment(
                           day: selectedDay!,
                           hour: selectedTime!,
-                          specialistName: widget.specialistEntity.name ?? '',
+                          specialistId: _currentSpecialist.id ?? '',
                           uid: userId,
                         );
                       },

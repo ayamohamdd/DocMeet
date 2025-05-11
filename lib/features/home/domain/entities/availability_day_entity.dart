@@ -1,6 +1,6 @@
 class AvailabilityDayEntity {
   String? day;
-  List<String>? hours;
+  List<Map<String, dynamic>>? hours;
 
   AvailabilityDayEntity({this.day, this.hours});
 }

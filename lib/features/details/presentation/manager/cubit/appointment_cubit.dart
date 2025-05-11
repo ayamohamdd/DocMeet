@@ -7,9 +7,16 @@ import 'package:quest_task/features/details/domain/entities/appointment_entity.d
 import 'package:quest_task/features/details/domain/repos/appointment_repo.dart';
 import 'package:quest_task/features/details/domain/use_cases/book_appointment_use_case.dart';
 import 'package:quest_task/features/details/presentation/manager/cubit/appointment_state.dart';
+import 'package:quest_task/features/home/data/specialist_model/specialist_model.dart';
+import 'package:quest_task/core/services/firestore_service.dart';
 
 class AppointmentCubit extends Cubit<AppointmentState> {
   final BookAppointmentUseCase _appointmentUseCase;
+  final _specialistService = FirestoreService<SpecialistModel>(
+    collection: 'specialists',
+    fromJson: SpecialistModel.fromJson,
+    toJson: (specialist) => specialist.toJson(),
+  );
   List<AppointmentModel> _bookedAppointments = [];
 
   AppointmentCubit()
@@ -19,7 +26,7 @@ class AppointmentCubit extends Cubit<AppointmentState> {
   Future<void> bookAppointment({
     required String day,
     required String hour,
-    required String specialistName,
+    required String specialistId,
     String? uid,
   }) async {
     emit(BookingAppointmentLoading());
@@ -27,7 +34,7 @@ class AppointmentCubit extends Cubit<AppointmentState> {
     final appointment = AppointmentModel(
       day: day,
       hour: hour,
-      specialistName: specialistName,
+      specialistId: specialistId,
       status: 'booked',
       uid: uid,
     );
@@ -41,6 +48,20 @@ class AppointmentCubit extends Cubit<AppointmentState> {
         emit(BookingAppointmentSuccess());
       },
     );
+  }
+
+  Future<SpecialistModel?> refreshSpecialist(String specialistId) async {
+    try {
+      final specialist = await _specialistService.get(specialistId);
+      if (specialist != null) {
+        log('Refreshed specialist data: ${specialist.name} (ID: ${specialist.id})');
+        log('Updated availability: ${specialist.availabilityDays?.map((d) => '${d.day}: ${d.hours}').join(', ')}');
+      }
+      return specialist;
+    } catch (e) {
+      log('Error refreshing specialist: $e');
+      return null;
+    }
   }
 
   bool isSlotBooked(String day, String hour) {

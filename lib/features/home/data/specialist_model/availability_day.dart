@@ -6,7 +6,7 @@ class AvailabilityDay extends AvailabilityDayEntity {
   @override
   String? day;
   @override
-  List<String>? hours;
+  List<Map<String, dynamic>>? hours;
   AvailabilityDay({this.day, this.hours}) : super(day: day, hours: hours);
 
   factory AvailabilityDay.fromJson(Map<String, dynamic> json) {
@@ -35,14 +35,19 @@ class AvailabilityDay extends AvailabilityDayEntity {
       }
     }
 
-    final hours =
-        (json['hours'] as List<dynamic>?)?.map((e) {
-          final hour = e.toString();
-          if (hour.length == 4) {
-            return "0$hour";
-          }
-          return hour;
-        }).toList();
+    final hours = (json['hours'] as List<dynamic>?)?.map((e) {
+      if (e is Map<String, dynamic>) {
+        return e;
+      } else {
+        // Handle legacy format where hours were just strings
+        final hour = e.toString();
+        final formattedHour = hour.length == 4 ? "0$hour" : hour;
+        return {
+          'hour': formattedHour,
+          'status': 'available'
+        };
+      }
+    }).toList();
     print('Debug - Parsed hours: $hours');
 
     final result = AvailabilityDay(day: day, hours: hours);
@@ -52,5 +57,11 @@ class AvailabilityDay extends AvailabilityDayEntity {
     return result;
   }
 
-  Map<String, dynamic> toJson() => {'day': day, 'hours': hours};
+  Map<String, dynamic> toJson() => {
+    'day': day,
+    'hours': hours?.map((hourMap) => {
+      'hour': hourMap['hour'],
+      'status': hourMap['status']
+    }).toList()
+  };
 }

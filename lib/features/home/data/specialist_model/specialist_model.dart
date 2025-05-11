@@ -3,6 +3,7 @@ import 'package:quest_task/features/home/domain/entities/availability_day_entity
 import 'availability_day.dart';
 
 class SpecialistModel extends SpecialistEntity {
+  String? id;
   @override
   List<AvailabilityDayEntity>? availabilityDays;
   @override
@@ -22,6 +23,7 @@ class SpecialistModel extends SpecialistEntity {
   String? imageUrl;
 
   SpecialistModel({
+    this.id,
     List<AvailabilityDay>? availabilityDays,
     this.bio,
     this.category,
@@ -32,6 +34,7 @@ class SpecialistModel extends SpecialistEntity {
     this.imageUrl,
     this.rating,
   }) : super(
+         id: id,
          availabilityDays: availabilityDays?.cast<AvailabilityDayEntity>(),
          bio: bio,
          category: category,
@@ -64,6 +67,7 @@ class SpecialistModel extends SpecialistEntity {
             .toList();
 
     final model = SpecialistModel(
+      id: json['id'] ?? json['document_id'],
       availabilityDays: availabilityList,
       bio: json['bio'] as String?,
       category: json['category'] as String?,
@@ -75,12 +79,13 @@ class SpecialistModel extends SpecialistEntity {
       rating: (json['rating'] as num?)?.toDouble(),
     );
     print(
-      'Debug - Created SpecialistModel with availability days: ${model.availabilityDays?.length}',
+      'Debug - Created SpecialistModel with ID: ${model.id}, availability days: ${model.availabilityDays?.length}',
     );
     return model;
   }
 
   Map<String, dynamic> toJson() => {
+    'id': id,
     'availability':
         availabilityDays?.map((e) => (e as AvailabilityDay).toJson()).toList(),
     'bio': bio,
