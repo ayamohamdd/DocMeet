@@ -34,9 +34,13 @@ A Flutter application that enables users to book appointments with specialists (
   - Firebase Authentication
   - Real-time data synchronization
 
-## 📱 Screenshots
+## 📱 Demo
 
-"https://drive.google.com/file/d/1mj9_nhIlbuMA-2r8smyPVteicJ_TqIF0/view?usp=drive_link"
+<video width="600" controls>
+  <source src="demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 
 
 ## 🏗️ Architecture
