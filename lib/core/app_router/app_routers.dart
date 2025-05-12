@@ -35,8 +35,9 @@ class AppRouter {
         builder:
             (context, state) => MultiBlocProvider(
               providers: [
-                BlocProvider(
-                  create: (context) => HomeCubit()..getAllSpecialists(),
+                BlocProvider.value(
+                  value:
+                      SetupSeviceLocator.sl<HomeCubit>()..getAllSpecialists(),
                 ),
                 BlocProvider(
                   create:
