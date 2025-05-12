@@ -12,6 +12,7 @@ class LoginForm extends StatelessWidget {
     return BaseAuthForm(
       submitButtonText: 'Sign In',
       onSubmit: onSignIn,
+      
       alternateActionText: "Don't have an account? ",
       alternateActionButtonText: 'Sign Up',
       onAlternateAction: onSignUp,

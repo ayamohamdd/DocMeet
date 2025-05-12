@@ -152,6 +152,7 @@ class _AvailabilityTabState extends State<AvailabilityTab> {
           children: [
             PrimaryButton(
               text: 'Book Now',
+              isLoading: state is BookingAppointmentLoading,
               onPressed:
                   selectedTime == null
                       ? null
@@ -166,27 +167,6 @@ class _AvailabilityTabState extends State<AvailabilityTab> {
                         );
                       },
             ),
-            if (state is BookingAppointmentLoading)
-              const Padding(
-                padding: EdgeInsets.only(top: 16.0),
-                child: CircularProgressIndicator(),
-              ),
-            if (state is BookingAppointmentError)
-              Padding(
-                padding: const EdgeInsets.only(top: 16.0),
-                child: Text(
-                  state.message,
-                  style: AppTextStyles.bodyMedium.copyWith(color: Colors.red),
-                ),
-              ),
-            if (state is BookingAppointmentSuccess)
-              Padding(
-                padding: const EdgeInsets.only(top: 16.0),
-                child: Text(
-                  'Appointment booked successfully!',
-                  style: AppTextStyles.bodyMedium.copyWith(color: Colors.green),
-                ),
-              ),
           ],
         );
       },

@@ -167,6 +167,7 @@ class _BaseAuthFormState extends State<BaseAuthForm> {
           PrimaryButton(
             text: widget.submitButtonText,
             onPressed: _handleSubmit,
+            isLoading: _isLoading,
           ),
           SizedBox(height: context.screenHeight * 0.02),
           _buildAlternateActionLink(),

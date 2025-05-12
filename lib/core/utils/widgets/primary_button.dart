@@ -8,6 +8,7 @@ class PrimaryButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final double? width;
   final double? height;
+  final bool isLoading;
 
   const PrimaryButton({
     super.key,
@@ -15,6 +16,7 @@ class PrimaryButton extends StatelessWidget {
     this.onPressed,
     this.width,
     this.height,
+    this.isLoading = false,
   });
 
   @override
@@ -31,15 +33,24 @@ class PrimaryButton extends StatelessWidget {
           elevation: 0,
           disabledBackgroundColor: AppColors.primary.withOpacity(0.5),
         ),
-        onPressed: onPressed,
-        child: Text(
-          text,
-          style: AppTextStyles.bodyLarge.copyWith(
-            color: onPressed == null 
-                ? AppColors.onSecondary.withOpacity(0.5)
-                : AppColors.onSecondary,
-          ),
-        ),
+        onPressed: isLoading ? null : onPressed,
+        child: isLoading
+            ? const SizedBox(
+                height: 20,
+                width: 20,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  valueColor: AlwaysStoppedAnimation<Color>(AppColors.onSecondary),
+                ),
+              )
+            : Text(
+                text,
+                style: AppTextStyles.bodyLarge.copyWith(
+                  color: onPressed == null 
+                      ? AppColors.onSecondary.withOpacity(0.5)
+                      : AppColors.onSecondary,
+                ),
+              ),
       ),
     );
   }

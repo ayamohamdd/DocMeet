@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quest_task/core/utils/theme/app_colors.dart';
+import 'package:quest_task/core/utils/widgets/custom_snackbar.dart';
 import 'package:quest_task/features/appointment/presentation/manager/cubit/appointment_cubit.dart';
 import 'package:quest_task/features/appointment/presentation/manager/cubit/appointment_state.dart';
 import 'package:quest_task/features/appointment/presentation/views/widgets/appointment_card.dart';
 import 'package:quest_task/features/appointment/presentation/views/widgets/appointment_loading_view.dart';
 import 'package:quest_task/features/appointment/presentation/views/widgets/empty_appointments.dart';
+import 'package:quest_task/features/home/presentation/manager/cubit/home_cubit.dart';
 
 class AppointmentsView extends StatefulWidget {
   const AppointmentsView({super.key});
@@ -77,7 +79,6 @@ class _AppointmentsViewState extends State<AppointmentsView>
     }
   }
 
-
   @override
   bool get wantKeepAlive => true;
 
@@ -96,32 +97,24 @@ class _AppointmentsViewState extends State<AppointmentsView>
         body: BlocConsumer<AppointmentCubit, AppointmentState>(
           listener: (context, state) {
             if (state is FetchUserAppointmentsFiled) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text(state.error)));
+              CustomSnackBar.show(
+                context: context,
+                message: state.error,
+                type: SnackBarType.error,
+              );
             } else if (state is CancelingAppointmentError) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text(state.message)));
-            } else if (state is ReschedulingAppointmentError) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text(state.message)));
+              CustomSnackBar.show(
+                context: context,
+                message: state.message,
+                type: SnackBarType.error,
+              );
             } else if (state is CancelingAppointmentSuccess) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  backgroundColor: AppColors.primary,
-                  content: Text('Appointment cancelled successfully'),
-                ),
+              CustomSnackBar.show(
+                context: context,
+                message: 'Appointment cancelled successfully',
+                type: SnackBarType.success,
               );
-            } else if (state is ReschedulingAppointmentSuccess) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  backgroundColor: AppColors.primary,
-
-                  content: Text('Appointment rescheduled successfully'),
-                ),
-              );
+              context.read<HomeCubit>().getAllSpecialists();
             }
           },
           builder: (context, state) {
@@ -142,7 +135,7 @@ class _AppointmentsViewState extends State<AppointmentsView>
                   final appointment = state.appointments[index];
                   return AppointmentCard(
                     appointment: appointment,
-                   onCancel: () => _showCancelDialog(context, appointment.id!),
+                    onCancel: () => _showCancelDialog(context, appointment.id!),
                   );
                 },
               );

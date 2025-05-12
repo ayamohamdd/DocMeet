@@ -76,8 +76,15 @@ class AppRouter {
       GoRoute(
         path: appointmentsView,
         builder:
-            (context, state) => BlocProvider(
-              create: (context) => AppointmentCubit()..fetchUserAppointments(),
+            (context, state) => MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) => AppointmentCubit()..fetchUserAppointments(),
+                ),
+                BlocProvider(
+                  create: (context) => HomeCubit()..getAllSpecialists(),
+                ),
+              ],
               child: const AppointmentsView(),
             ),
       ),
