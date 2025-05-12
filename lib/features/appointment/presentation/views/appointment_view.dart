@@ -119,8 +119,7 @@ class _AppointmentsViewState extends State<AppointmentsView>
           },
           builder: (context, state) {
             if (state is FetchUserAppointmentsLoading ||
-                state is CancelingAppointmentLoading ||
-                state is ReschedulingAppointmentLoading) {
+                state is CancelingAppointmentLoading) {
               return const AppointmentLoadingView();
             }
 
