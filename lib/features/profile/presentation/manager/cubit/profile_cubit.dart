@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quest_task/core/di/setup_service_locator.dart';
 import 'package:quest_task/core/services/storage_service.dart';
@@ -11,16 +13,16 @@ class ProfileCubit extends Cubit<ProfileState> {
   final StorageService _storageService;
 
   ProfileCubit()
-      : _getUserDataUseCase = SetupSeviceLocator.sl.get(),
-        _signOutUseCase = SetupSeviceLocator.sl.get(),
-        _storageService = SetupSeviceLocator.sl.get(),
-        super(ProfileInitial());
+    : _getUserDataUseCase = SetupSeviceLocator.sl.get(),
+      _signOutUseCase = SetupSeviceLocator.sl.get(),
+      _storageService = SetupSeviceLocator.sl.get(),
+      super(ProfileInitial());
 
   Future<void> getUserData() async {
     emit(ProfileLoading());
     final String? userId = _storageService.getUserId();
     if (userId == null) {
-      emit( ProfileError('User not found'));
+      emit(ProfileError('User not found'));
       return;
     }
 
@@ -34,9 +36,9 @@ class ProfileCubit extends Cubit<ProfileState> {
   Future<void> signOut() async {
     emit(SignOutLoading());
     final result = await _signOutUseCase();
-    result.fold(
-      (failure) => emit(SignOutError(failure.message)),
-      (_) => emit(SignOutSuccess()),
-    );
+    result.fold((failure) => emit(SignOutError(failure.message)), (_) {
+      log("success sign out====");
+      emit(SignOutSuccess());
+    });
   }
-} 
+}

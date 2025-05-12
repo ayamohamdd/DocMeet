@@ -51,20 +51,5 @@ class AuthRepoImpl extends AuthRepo {
     }
   }
 
-  @override
-  Future<Either<Failure, void>> signOut() async {
-    try {
-      await authDataSource.signOut();
-      return right(null);
-    } on FirebaseAuthException catch (e) {
-      return left(AuthFailure.fromFirebaseAuthException(e));
-    } catch (e) {
-      return left(
-        const AuthFailure(
-          message: 'An unexpected error occurred',
-          code: 'UNKNOWN_ERROR',
-        ),
-      );
-    }
-  }
+  
 }

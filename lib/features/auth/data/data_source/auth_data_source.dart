@@ -5,7 +5,7 @@ import 'package:quest_task/core/services/firebase_services/firebase_auth_service
 abstract class AuthDataSource {
   Future<String> signIn(String email, String password);
   Future<String> signUp(String name, String email, String password);
-  Future<void> signOut();
+  // Future<void> signOut();
 }
 
 class AuthDataSourceImpl extends AuthDataSource {
@@ -31,8 +31,5 @@ class AuthDataSourceImpl extends AuthDataSource {
     );
   }
 
-  @override
-  Future<void> signOut() async {
-    await firebaseAuthServices.signOut();
-  }
+  
 }

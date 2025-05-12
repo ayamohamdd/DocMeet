@@ -8,5 +8,5 @@ abstract class AuthRepo {
     String email,
     String password,
   );
-  Future<Either<Failure, void>> signOut();
+  // Future<Either<Failure, void>> signOut();
 }

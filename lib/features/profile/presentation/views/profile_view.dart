@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -33,8 +35,8 @@ class _ProfileViewContent extends StatelessWidget {
       body: BlocConsumer<ProfileCubit, ProfileState>(
         listener: (context, state) {
           if (state is SignOutSuccess) {
-            context.read<AuthCubit>().signOut();
-            GoRouter.of(context).pushReplacementNamed(AppRouter.signInView);
+            log('');
+            GoRouter.of(context).pushReplacement(AppRouter.signInView);
           } else if (state is SignOutError) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
