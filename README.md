@@ -36,8 +36,6 @@ A Flutter application that enables users to book appointments with specialists (
 
 ## 📱 Demo
 
-## 📱 Demo
-
 🎬 [Watch Demo Video on YouTube](https://youtube.com/shorts/BhVzTTaYByc?feature=share)
 
 ## 🏗️ Architecture
