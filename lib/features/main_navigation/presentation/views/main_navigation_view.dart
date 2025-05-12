@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quest_task/core/constants/media_query_extension.dart';
 import 'package:quest_task/core/utils/theme/app_colors.dart';
 import 'package:quest_task/features/appointment/presentation/views/appointment_view.dart';
 import 'package:quest_task/features/home/presentation/views/home_view.dart';
@@ -51,6 +52,7 @@ class _MainNavigationViewState extends State<MainNavigationView>
     return Scaffold(
       body: _screens[_currentIndex],
       bottomNavigationBar: Container(
+        height: context.screenHeight * 0.1,
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
           gradient: LinearGradient(
