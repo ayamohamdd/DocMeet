@@ -80,7 +80,7 @@ class _SplashViewState extends State<SplashView>
                       width: context.screenWidth * 0.4,
                       height: context.screenWidth * 0.4,
                       decoration: const BoxDecoration(
-                        color: Colors.white,
+                        color: AppColors.surface,
                         shape: BoxShape.circle,
                         // borderRadius: BorderRadius.circular(20),
                       ),
@@ -94,7 +94,7 @@ class _SplashViewState extends State<SplashView>
                       style: Theme.of(
                         context,
                       ).textTheme.headlineLarge?.copyWith(
-                        color: Colors.white,
+                        color: AppColors.surface,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

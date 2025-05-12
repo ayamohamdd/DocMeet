@@ -22,21 +22,26 @@ class TimeChip extends StatelessWidget {
       label: Text(time),
       selected: isSelected,
       onSelected: onSelected,
-      backgroundColor: isAvailable ? AppColors.surfaceVariant : AppColors.surfaceVariant.withOpacity(0.5),
+      backgroundColor:
+          isAvailable
+              ? AppColors.surfaceVariant
+              : AppColors.surfaceVariant.withOpacity(0.5),
       selectedColor: AppColors.primary,
       labelStyle: AppTextStyles.bodyMedium.copyWith(
-        color: isSelected 
-          ? Colors.white 
-          : isAvailable 
-            ? AppColors.onSurface 
-            : AppColors.onSurface.withOpacity(0.5),
+        color:
+            isSelected
+                ? AppColors.surface
+                : isAvailable
+                ? AppColors.onSurface
+                : AppColors.onSurface.withOpacity(0.5),
       ),
       side: BorderSide(
-        color: isSelected 
-          ? AppColors.primary 
-          : isAvailable 
-            ? AppColors.onPrimary 
-            : AppColors.onPrimary.withOpacity(0.5),
+        color:
+            isSelected
+                ? AppColors.primary
+                : isAvailable
+                ? AppColors.onPrimary
+                : AppColors.onPrimary.withOpacity(0.5),
         width: 1.5,
       ),
     );

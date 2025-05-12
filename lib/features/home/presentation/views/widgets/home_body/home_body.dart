@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quest_task/core/constants/app_colors.dart';
 import 'package:quest_task/core/constants/media_query_extension.dart';
 import 'package:quest_task/core/utils/theme/text_styles.dart';
 import 'package:quest_task/features/home/presentation/manager/cubit/home_cubit.dart';

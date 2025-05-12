@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quest_task/core/utils/errors/failure.dart';
+import 'package:quest_task/core/utils/theme/app_colors.dart';
 
 class AuthErrorHandler {
   static String getErrorMessage(Failure failure) {
@@ -41,7 +42,7 @@ class AuthErrorHandler {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: Colors.red,
+        backgroundColor:AppColors.error,
         behavior: SnackBarBehavior.floating,
         margin: const EdgeInsets.all(16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

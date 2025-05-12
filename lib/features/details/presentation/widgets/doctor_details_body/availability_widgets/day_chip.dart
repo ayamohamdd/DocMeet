@@ -26,7 +26,7 @@ class DayChip extends StatelessWidget {
         backgroundColor: AppColors.surfaceVariant,
         selectedColor: AppColors.primary,
         labelStyle: AppTextStyles.bodyMedium.copyWith(
-          color: isSelected ? Colors.white : AppColors.onSurface,
+          color: isSelected ? AppColors.surface : AppColors.onSurface,
         ),
         padding: EdgeInsets.symmetric(
           horizontal: context.screenWidth * 0.03,

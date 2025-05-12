@@ -4,6 +4,7 @@ import 'package:quest_task/core/utils/theme/app_colors.dart';
 import 'package:quest_task/features/appointment/presentation/manager/cubit/appointment_cubit.dart';
 import 'package:quest_task/features/appointment/presentation/manager/cubit/appointment_state.dart';
 import 'package:quest_task/features/appointment/presentation/views/widgets/appointment_card.dart';
+import 'package:quest_task/features/appointment/presentation/views/widgets/appointment_loading_view.dart';
 import 'package:quest_task/features/appointment/presentation/views/widgets/empty_appointments.dart';
 
 class AppointmentsView extends StatefulWidget {
@@ -123,7 +124,7 @@ class _AppointmentsViewState extends State<AppointmentsView>
             if (state is FetchUserAppointmentsLoading ||
                 state is CancelingAppointmentLoading ||
                 state is ReschedulingAppointmentLoading) {
-              return const Center(child: CircularProgressIndicator());
+              return const AppointmentLoadingView();
             }
 
             if (state is FetchUserAppointmentsSuccess) {

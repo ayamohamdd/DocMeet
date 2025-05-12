@@ -25,7 +25,7 @@ class SignOutButton extends StatelessWidget {
         onPressed: () => _showSignOutDialog(context),
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
-          foregroundColor: Colors.white,
+          foregroundColor: AppColors.surface,
           minimumSize: Size(double.infinity, context.screenHeight * 0.07),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),

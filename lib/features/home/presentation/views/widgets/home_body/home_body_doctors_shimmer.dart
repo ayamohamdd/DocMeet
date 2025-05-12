@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:quest_task/core/constants/app_colors.dart';
 import 'package:quest_task/core/constants/media_query_extension.dart';
 import 'package:quest_task/core/utils/theme/app_colors.dart';
 
@@ -38,7 +37,7 @@ class HomeBodyDoctorsShimmer extends StatelessWidget {
                         width: context.screenWidth * 0.4,
                         height: 24,
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: AppColors.surface,
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
@@ -47,7 +46,7 @@ class HomeBodyDoctorsShimmer extends StatelessWidget {
                         width: context.screenWidth * 0.3,
                         height: 16,
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: AppColors.surface,
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
@@ -56,7 +55,7 @@ class HomeBodyDoctorsShimmer extends StatelessWidget {
                         width: context.screenWidth * 0.5,
                         height: 60,
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: AppColors.surface,
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
@@ -70,7 +69,7 @@ class HomeBodyDoctorsShimmer extends StatelessWidget {
                     width: context.screenWidth * 0.3,
                     height: context.screenWidth * 0.3,
                     decoration: const BoxDecoration(
-                      color: Colors.white,
+                      color: AppColors.surface,
                       shape: BoxShape.circle,
                     ),
                   ),
@@ -82,7 +81,7 @@ class HomeBodyDoctorsShimmer extends StatelessWidget {
                   child: Container(
                     height: context.screenHeight * 0.08,
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: AppColors.surface,
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),

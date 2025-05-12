@@ -44,7 +44,7 @@ class DoctorImage extends StatelessWidget {
                   width: context.screenWidth * 0.7,
                   height: context.screenHeight * 0.7,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.surface,
                     borderRadius: BorderRadius.circular(100),
                   ),
                 );

@@ -19,13 +19,13 @@ class AppColors {
 
   // Secondary colors
   static const Color secondary = Color(0xff007ac2);
-  static const Color onSecondary = Colors.white;
+  static const Color onSecondary = AppColors.surface;
 
   // Tertiary colors
   static const Color tertiary = Color(0xff007ac2);
-  static const Color onTertiary = Colors.white;
+  static const Color onTertiary = AppColors.surface;
 
   // Error colors
   static const Color error = Color(0xFFB3261E);
-  static const Color onError = Colors.white;
+  static const Color onError = AppColors.surface;
 }

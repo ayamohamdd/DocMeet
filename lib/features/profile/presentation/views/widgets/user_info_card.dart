@@ -19,7 +19,7 @@ class UserInfoCard extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(context.screenWidth * 0.04),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -70,4 +70,4 @@ class UserInfoCard extends StatelessWidget {
       ),
     );
   }
-} 
+}
