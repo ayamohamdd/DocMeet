@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:quest_task/core/app_router/app_routers.dart';
@@ -17,11 +18,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      title: 'Quest Task',
-      routerConfig: AppRouter.appRouter,
-      theme: AppTheme.lightTheme,
+    return DevicePreview(
+      builder:(context)=> MaterialApp.router(
+        useInheritedMediaQuery: true,
+        debugShowCheckedModeBanner: false,
+        title: 'Quest Task',
+        routerConfig: AppRouter.appRouter,
+        theme: AppTheme.lightTheme,
+      ),
     );
   }
 }

@@ -22,6 +22,9 @@ class _AppointmentsViewState extends State<AppointmentsView>
   void initState() {
     super.initState();
     _focusNode.addListener(_onFocusChange);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _fetchAppointments();
+    });
   }
 
   @override
@@ -38,6 +41,7 @@ class _AppointmentsViewState extends State<AppointmentsView>
   }
 
   void _fetchAppointments() {
+    if (!mounted) return;
     context.read<AppointmentCubit>().fetchUserAppointments();
   }
 
