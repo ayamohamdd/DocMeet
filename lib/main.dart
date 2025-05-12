@@ -18,14 +18,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DevicePreview(
-      builder:(context)=> MaterialApp.router(
-        useInheritedMediaQuery: true,
-        debugShowCheckedModeBanner: false,
-        title: 'Quest Task',
-        routerConfig: AppRouter.appRouter,
-        theme: AppTheme.lightTheme,
-      ),
+    return MaterialApp.router(
+      useInheritedMediaQuery: true,
+      debugShowCheckedModeBanner: false,
+      title: 'Quest Task',
+      routerConfig: AppRouter.appRouter,
+      theme: AppTheme.lightTheme,
     );
   }
 }
