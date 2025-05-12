@@ -36,10 +36,7 @@ A Flutter application that enables users to book appointments with specialists (
 
 ## 📱 Demo
 
-<video width="600" controls>
-  <source src="demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BhVzTTaYByc" frameborder="0" allowfullscreen></iframe>
 
 
 
