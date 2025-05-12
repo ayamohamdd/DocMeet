@@ -43,16 +43,23 @@ class _SplashViewState extends State<SplashView>
 
     _controller.forward();
 
-    Future.delayed(const Duration(seconds: 3), () {
-      if (mounted) {
-        final authCubit = SetupSeviceLocator.sl<AuthCubit>();
-        if (authCubit.isAuthenticated()) {
-          GoRouter.of(context).pushReplacement(AppRouter.mainNavigationView);
-        } else {
-          GoRouter.of(context).pushReplacement(AppRouter.signInView);
-        }
-      }
-    });
+    _checkAuthAndNavigate();
+  }
+
+  Future<void> _checkAuthAndNavigate() async {
+    await Future.delayed(const Duration(seconds: 3));
+    if (!mounted) return;
+
+    final authCubit = SetupSeviceLocator.sl<AuthCubit>();
+    final isAuthenticated = authCubit.isAuthenticated();
+
+    if (!mounted) return;
+
+    if (isAuthenticated) {
+      GoRouter.of(context).pushReplacement(AppRouter.mainNavigationView);
+    } else {
+      GoRouter.of(context).pushReplacement(AppRouter.signInView);
+    }
   }
 
   @override

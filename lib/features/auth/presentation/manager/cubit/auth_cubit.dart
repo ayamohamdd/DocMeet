@@ -39,11 +39,20 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> signOut() async {
-    await _storageService.removeUserId();
-    emit(AuthInitialState());
+    emit(AuthSignOutLoadingState());
+    try {
+      await _storageService.removeUserId();
+      emit(AuthSignOutSuccessState());
+    } catch (e) {
+      emit(AuthSignOutErrorState(error: e.toString()));
+    }
   }
 
   bool isAuthenticated() {
-    return _storageService.hasUserId();
+    try {
+      return _storageService.hasUserId();
+    } catch (e) {
+      return false;
+    }
   }
 }
