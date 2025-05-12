@@ -28,7 +28,6 @@ class HomeBodyDoctorsShimmer extends StatelessWidget {
             ),
             child: Stack(
               children: [
-                // Doctor Info Section
                 Positioned(
                   left: context.screenWidth * 0.05,
                   top: context.screenHeight * 0.02,
@@ -64,7 +63,6 @@ class HomeBodyDoctorsShimmer extends StatelessWidget {
                     ],
                   ),
                 ),
-                // Doctor Image
                 Positioned(
                   right: context.screenWidth * 0.05,
                   top: context.screenHeight * 0.02,
@@ -77,7 +75,6 @@ class HomeBodyDoctorsShimmer extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Availability Section
                 Positioned(
                   bottom: context.screenHeight * 0.02,
                   left: context.screenWidth * 0.05,

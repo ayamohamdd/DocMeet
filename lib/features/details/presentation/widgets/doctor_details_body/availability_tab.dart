@@ -129,7 +129,6 @@ class _AvailabilityTabState extends State<AvailabilityTab> {
     return BlocConsumer<AppointmentCubit, AppointmentState>(
       listener: (context, state) {
         if (state is BookingAppointmentSuccess) {
-          // Refresh the specialist data after successful booking
           context
               .read<AppointmentCubit>()
               .refreshSpecialist(_currentSpecialist.id!)

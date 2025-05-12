@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:quest_task/core/services/firestore_service.dart';
-import 'package:quest_task/features/home/data/specialist_model/specialist_model.dart';
+import 'package:quest_task/features/home/data/models/specialist_model.dart';
 
 abstract class HomeDataSource {
   Future<List<SpecialistModel>> getAllSpecialist();

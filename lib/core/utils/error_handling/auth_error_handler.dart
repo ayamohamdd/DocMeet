@@ -16,7 +16,6 @@ class AuthErrorHandler {
   }
 
   static String _handleServerError(ServerFailure failure) {
-    // Handle specific error codes or messages from your backend
     if (failure.message.contains('user-not-found')) {
       return 'No account found with this email';
     }

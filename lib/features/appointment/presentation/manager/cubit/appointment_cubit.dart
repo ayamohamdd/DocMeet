@@ -9,7 +9,7 @@ import 'package:quest_task/features/appointment/domain/use_cases/book_appointmen
 import 'package:quest_task/features/appointment/domain/use_cases/cancel_appointment_use_case.dart';
 import 'package:quest_task/features/appointment/domain/use_cases/reschedule_appointment_use_case.dart';
 import 'package:quest_task/features/appointment/presentation/manager/cubit/appointment_state.dart';
-import 'package:quest_task/features/home/data/specialist_model/specialist_model.dart';
+import 'package:quest_task/features/home/data/models/specialist_model.dart';
 import 'package:quest_task/core/services/firestore_service.dart';
 
 class AppointmentCubit extends Cubit<AppointmentState> {

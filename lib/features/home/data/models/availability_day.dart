@@ -39,7 +39,6 @@ class AvailabilityDay extends AvailabilityDayEntity {
       if (e is Map<String, dynamic>) {
         return e;
       } else {
-        // Handle legacy format where hours were just strings
         final hour = e.toString();
         final formattedHour = hour.length == 4 ? "0$hour" : hour;
         return {
