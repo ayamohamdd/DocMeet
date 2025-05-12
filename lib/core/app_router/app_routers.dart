@@ -79,7 +79,8 @@ class AppRouter {
             (context, state) => MultiBlocProvider(
               providers: [
                 BlocProvider(
-                  create: (context) => AppointmentCubit()..fetchUserAppointments(),
+                  create:
+                      (context) => AppointmentCubit()..fetchUserAppointments(),
                 ),
                 BlocProvider(
                   create: (context) => HomeCubit()..getAllSpecialists(),
